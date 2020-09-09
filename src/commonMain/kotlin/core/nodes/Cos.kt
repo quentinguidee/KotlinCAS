@@ -4,7 +4,7 @@ import core.Sign
 
 class Cos(var argument: Node): Node() {
     override val sign: Sign
-        get() = Sign.Unknown
+        get() = Sign.UNKNOWN
 
     override fun simplified(): Node {
         return Cos(argument.simplified())

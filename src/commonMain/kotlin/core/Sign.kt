@@ -1,8 +1,8 @@
 package core
 
 enum class Sign(val value: Int) {
-    Negative(-1),
-    Signless(0),
-    Positive(1),
-    Unknown(2)
+    NEGATIVE(-1),
+    SIGNLESS(0),
+    POSITIVE(1),
+    UNKNOWN(2)
 }

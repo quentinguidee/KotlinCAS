@@ -4,7 +4,7 @@ import core.Sign
 
 class AbsoluteValue(var argument: Node): Node() {
     override val sign: Sign
-        get() = Sign.Positive
+        get() = Sign.POSITIVE
 
     override fun simplified(): Node {
         return argument.simplified().absoluteValue()
