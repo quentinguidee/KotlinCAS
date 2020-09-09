@@ -11,6 +11,9 @@ class CoreTests {
         val integer = Integer(2)
         assertEquals(integer.toString(), "2")
         assertEquals(integer.toLaTeX(), "2")
+        assertEquals(Integer(3).sign, Sign.POSITIVE)
+        assertEquals(Integer(0).sign, Sign.SIGNLESS)
+        assertEquals(Integer(-3).sign, Sign.NEGATIVE)
     }
 
     @Test
@@ -59,5 +62,16 @@ class CoreTests {
         val tan = Tan(Integer(3))
         assertEquals(tan.toString(), "tan(3)")
         assertEquals(tan.toLaTeX(), "\\tan{(3)}")
+    }
+
+    @Test
+    internal fun testOpposite() {
+        val opposite = Opposite(Integer(3))
+        assertEquals(opposite.toString(), "-3")
+        assertEquals(opposite.toLaTeX(), "-3")
+        assertEquals(Opposite(opposite).simplified().toString(), "3")
+        assertEquals(Opposite(Integer(3)).sign, Sign.NEGATIVE)
+        assertEquals(Opposite(Integer(0)).sign, Sign.SIGNLESS)
+        assertEquals(Opposite(Integer(-3)).sign, Sign.POSITIVE)
     }
 }

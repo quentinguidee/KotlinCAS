@@ -2,7 +2,7 @@ package core.nodes
 
 import core.Sign
 
-abstract class Node: AbsoluteValuable {
+abstract class Node: AbsoluteValuable, Opposable {
     abstract val sign: Sign
 
     abstract fun simplified(): Node
@@ -11,5 +11,9 @@ abstract class Node: AbsoluteValuable {
 
     override fun absoluteValue(): Node {
         return AbsoluteValue(this)
+    }
+
+    override fun opposite(): Node {
+        return Opposite(this)
     }
 }

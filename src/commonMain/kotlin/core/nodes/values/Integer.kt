@@ -2,10 +2,11 @@ package core.nodes.values
 
 import core.Sign
 import core.nodes.Node
+import kotlin.math.sign
 
 class Integer(var value: Int) : Value() {
     override val sign: Sign
-        get() = TODO("Not yet implemented")
+        get() = Sign.values().first { it.value == value.sign }
 
     override fun simplified(): Node {
         return this
