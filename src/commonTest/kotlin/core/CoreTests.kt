@@ -1,9 +1,6 @@
 package core
 
-import core.nodes.AbsoluteValue
-import core.nodes.Addition
-import core.nodes.Division
-import core.nodes.Power
+import core.nodes.*
 import core.nodes.values.Integer
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -41,5 +38,12 @@ class CoreTests {
         val absoluteValue = AbsoluteValue(Integer(3))
         assertEquals(absoluteValue.toString(), "|3|")
         assertEquals(absoluteValue.toLaTeX(), "\\left|3\\right|")
+    }
+
+    @Test
+    internal fun testCos() {
+        val cos = Cos(Integer(3))
+        assertEquals(cos.toString(), "cos(3)")
+        assertEquals(cos.toLaTeX(), "\\cos{(3)}")
     }
 }
