@@ -1,5 +1,6 @@
 package core
 
+import core.nodes.AbsoluteValue
 import core.nodes.Addition
 import core.nodes.Division
 import core.nodes.Power
@@ -33,5 +34,12 @@ class CoreTests {
     internal fun testAddition() {
         val addition = Addition(Integer(1), Integer(2), Integer(10))
         assertEquals(addition.toString(), "1+2+10")
+    }
+
+    @Test
+    internal fun testAbsoluteValue() {
+        val absoluteValue = AbsoluteValue(Integer(3))
+        assertEquals(absoluteValue.toString(), "|3|")
+        assertEquals(absoluteValue.toLaTeX(), "\\left|3\\right|")
     }
 }
