@@ -41,9 +41,23 @@ class CoreTests {
     }
 
     @Test
+    internal fun testSin() {
+        val sin = Sin(Integer(3))
+        assertEquals(sin.toString(), "sin(3)")
+        assertEquals(sin.toLaTeX(), "\\sin{(3)}")
+    }
+
+    @Test
     internal fun testCos() {
         val cos = Cos(Integer(3))
         assertEquals(cos.toString(), "cos(3)")
         assertEquals(cos.toLaTeX(), "\\cos{(3)}")
+    }
+
+    @Test
+    internal fun testTan() {
+        val tan = Tan(Integer(3))
+        assertEquals(tan.toString(), "tan(3)")
+        assertEquals(tan.toLaTeX(), "\\tan{(3)}")
     }
 }
