@@ -1,8 +1,9 @@
 package core.nodes
 
 import core.Sign
+import core.nodes.values.Unknown
 
-class Tan(var argument: Node): Node() {
+class Tan(var argument: Node) : Node() {
     override val sign: Sign
         get() = Sign.UNKNOWN
 
@@ -16,5 +17,9 @@ class Tan(var argument: Node): Node() {
 
     override fun toLaTeX(): String {
         return "\\tan{(" + argument.toLaTeX() + ")}"
+    }
+
+    override fun differentiated(unknown: Unknown): Node {
+        return Division(Sin(argument), Cos(argument)).differentiated(unknown)
     }
 }

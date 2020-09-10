@@ -1,8 +1,9 @@
 package core.nodes
 
 import core.Sign
+import core.nodes.values.Unknown
 
-class AbsoluteValue(var argument: Node): Node() {
+class AbsoluteValue(var argument: Node) : Node() {
     override val sign: Sign
         get() = Sign.POSITIVE
 
@@ -16,6 +17,13 @@ class AbsoluteValue(var argument: Node): Node() {
 
     override fun toLaTeX(): String {
         return "\\left|" + argument.toLaTeX() + "\\right|"
+    }
+
+    override fun differentiated(unknown: Unknown): Node {
+        return Multiplication(
+                argument.differentiated(unknown),
+                Division(this, argument)
+        )
     }
 }
 

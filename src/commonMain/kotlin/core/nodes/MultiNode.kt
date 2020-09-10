@@ -16,6 +16,6 @@ abstract class MultiNode(val separator: String, vararg children: Node) : Node() 
     }
 
     override fun toLaTeX(): String {
-        TODO("Not yet implemented")
+        return children.joinToString(separator = separator) { node -> node.toLaTeX() }
     }
 }

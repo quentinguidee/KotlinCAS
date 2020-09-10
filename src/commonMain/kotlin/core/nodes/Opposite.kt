@@ -1,8 +1,9 @@
 package core.nodes
 
 import core.Sign
+import core.nodes.values.Unknown
 
-class Opposite(var argument: Node): Node() {
+class Opposite(var argument: Node) : Node() {
     override val sign: Sign
         get() = Sign.values().first { it.value == argument.sign.value * -1 }
 
@@ -20,6 +21,10 @@ class Opposite(var argument: Node): Node() {
 
     override fun opposite(): Node {
         return argument
+    }
+
+    override fun differentiated(unknown: Unknown): Node {
+        return Opposite(argument.differentiated(unknown))
     }
 }
 

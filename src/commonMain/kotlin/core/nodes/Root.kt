@@ -2,10 +2,11 @@ package core.nodes
 
 import core.Sign
 import core.nodes.values.Integer
+import core.nodes.values.Unknown
 
 class Root(
         var radicand: Node,
-        var index: Node = Integer(2)
+        var index: Node = Integer(2),
 ) : Node() {
     override val sign: Sign
         get() = TODO("Not yet implemented")
@@ -31,7 +32,10 @@ class Root(
             "\\sqrt{" + radicand.toLaTeX() + "}"
         } else {
             "\\sqrt[" + index.toLaTeX() + "]{" + radicand.toLaTeX() + "}"
-
         }
+    }
+
+    override fun differentiated(unknown: Unknown): Node {
+        return Power(radicand, Division(Integer(1), index))
     }
 }

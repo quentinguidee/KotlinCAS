@@ -1,8 +1,9 @@
 package core.nodes
 
 import core.Sign
+import core.nodes.values.Unknown
 
-class Cos(var argument: Node): Node() {
+class Cos(var argument: Node) : Node() {
     override val sign: Sign
         get() = Sign.UNKNOWN
 
@@ -16,5 +17,9 @@ class Cos(var argument: Node): Node() {
 
     override fun toLaTeX(): String {
         return "\\cos{(" + argument.toLaTeX() + ")}"
+    }
+
+    override fun differentiated(unknown: Unknown): Node {
+        return Multiplication(argument.differentiated(unknown), Opposite(Sin(argument)))
     }
 }
