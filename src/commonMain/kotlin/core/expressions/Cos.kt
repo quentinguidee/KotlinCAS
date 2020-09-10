@@ -1,13 +1,13 @@
-package core.nodes
+package core.expressions
 
 import core.Sign
-import core.nodes.values.Unknown
+import core.expressions.values.Unknown
 
-class Cos(var argument: Node) : Node() {
+class Cos(var argument: Expression) : Expression() {
     override val sign: Sign
         get() = Sign.UNKNOWN
 
-    override fun simplified(): Node {
+    override fun simplified(): Expression {
         return Cos(argument.simplified())
     }
 
@@ -19,7 +19,7 @@ class Cos(var argument: Node) : Node() {
         return "\\cos{(" + argument.toLaTeX() + ")}"
     }
 
-    override fun differentiated(unknown: Unknown): Node {
+    override fun differentiated(unknown: Unknown): Expression {
         return Multiplication(argument.differentiated(unknown), Opposite(Sin(argument)))
     }
 }

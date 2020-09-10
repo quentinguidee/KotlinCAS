@@ -1,15 +1,15 @@
-package core.nodes
+package core.expressions
 
 import core.Sign
-import core.nodes.values.Unknown
+import core.expressions.values.Unknown
 
-class Integral(var unknown: Unknown, var argument: Node) : Node() {
+class Integral(var unknown: Unknown, var argument: Expression) : Expression() {
     override val sign: Sign
         get() = TODO("Not yet implemented")
 
-    constructor(argument: Node) : this(Unknown(), argument)
+    constructor(argument: Expression) : this(Unknown(), argument)
 
-    override fun simplified(): Node {
+    override fun simplified(): Expression {
         TODO("Not yet implemented")
     }
 
@@ -23,5 +23,5 @@ class Integral(var unknown: Unknown, var argument: Node) : Node() {
 }
 
 interface Integrable {
-    fun integrated(unknown: Unknown = Unknown()): Node
+    fun integrated(unknown: Unknown = Unknown()): Expression
 }

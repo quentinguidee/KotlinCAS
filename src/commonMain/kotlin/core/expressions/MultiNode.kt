@@ -1,13 +1,13 @@
-package core.nodes
+package core.expressions
 
-abstract class MultiNode(val separator: String, vararg children: Node) : Node() {
-    protected var children: ArrayList<Node> = ArrayList(children.asList())
+abstract class MultiNode(val separator: String, vararg children: Expression) : Expression() {
+    protected var children: ArrayList<Expression> = ArrayList(children.asList())
 
-    fun add(child: Node) {
+    fun add(child: Expression) {
         this.children.add(child)
     }
 
-    fun addAll(vararg children: Node) {
+    fun addAll(vararg children: Expression) {
         this.children.addAll(children)
     }
 

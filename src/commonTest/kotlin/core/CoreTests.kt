@@ -1,8 +1,8 @@
 package core
 
-import core.nodes.*
-import core.nodes.values.Integer
-import core.nodes.values.Unknown
+import core.expressions.*
+import core.expressions.values.Integer
+import core.expressions.values.Unknown
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

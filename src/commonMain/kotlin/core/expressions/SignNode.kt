@@ -1,13 +1,13 @@
-package core.nodes
+package core.expressions
 
 import core.Sign
-import core.nodes.values.Integer
+import core.expressions.values.Integer
 
-class SignNode(var argument: Node) : Node() {
+class SignNode(var argument: Expression) : Expression() {
     override val sign: Sign
         get() = argument.sign
 
-    override fun simplified(): Node {
+    override fun simplified(): Expression {
         return if (sign == Sign.UNKNOWN) this else Integer(sign.value)
     }
 

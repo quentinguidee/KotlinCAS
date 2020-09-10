@@ -1,13 +1,13 @@
-package core.nodes
+package core.expressions
 
 import core.Sign
-import core.nodes.values.Unknown
+import core.expressions.values.Unknown
 
-class Opposite(var argument: Node) : Node() {
+class Opposite(var argument: Expression) : Expression() {
     override val sign: Sign
         get() = Sign.values().first { it.value == argument.sign.value * -1 }
 
-    override fun simplified(): Node {
+    override fun simplified(): Expression {
         return argument.simplified().opposite()
     }
 
@@ -19,19 +19,19 @@ class Opposite(var argument: Node) : Node() {
         return "-" + argument.toLaTeX()
     }
 
-    override fun opposite(): Node {
+    override fun opposite(): Expression {
         return argument
     }
 
-    override fun differentiated(unknown: Unknown): Node {
+    override fun differentiated(unknown: Unknown): Expression {
         return Opposite(argument.differentiated(unknown))
     }
 
-    override fun integrated(unknown: Unknown): Node {
+    override fun integrated(unknown: Unknown): Expression {
         return Opposite(argument.integrated(unknown))
     }
 }
 
 interface Opposable {
-    fun opposite(): Node
+    fun opposite(): Expression
 }

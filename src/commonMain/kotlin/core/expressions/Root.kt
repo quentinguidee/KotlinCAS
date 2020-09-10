@@ -1,17 +1,17 @@
-package core.nodes
+package core.expressions
 
 import core.Sign
-import core.nodes.values.Integer
-import core.nodes.values.Unknown
+import core.expressions.values.Integer
+import core.expressions.values.Unknown
 
 class Root(
-        var radicand: Node,
-        var index: Node = Integer(2),
-) : Node() {
+        var radicand: Expression,
+        var index: Expression = Integer(2),
+) : Expression() {
     override val sign: Sign
         get() = TODO("Not yet implemented")
 
-    override fun simplified(): Node {
+    override fun simplified(): Expression {
         return this
     }
 
@@ -35,7 +35,7 @@ class Root(
         }
     }
 
-    override fun differentiated(unknown: Unknown): Node {
+    override fun differentiated(unknown: Unknown): Expression {
         return Power(radicand, Division(Integer(1), index))
     }
 }

@@ -1,14 +1,14 @@
-package core.nodes
+package core.expressions
 
 import core.Sign
-import core.nodes.values.Integer
-import core.nodes.values.Unknown
+import core.expressions.values.Integer
+import core.expressions.values.Unknown
 
-class Division(var numerator: Node, var denominator: Node) : Node() {
+class Division(var numerator: Expression, var denominator: Expression) : Expression() {
     override val sign: Sign
         get() = TODO("Not yet implemented")
 
-    override fun simplified(): Node {
+    override fun simplified(): Expression {
         return this
     }
 
@@ -20,7 +20,7 @@ class Division(var numerator: Node, var denominator: Node) : Node() {
         return "\\frac{" + numerator.toLaTeX() + "}{" + denominator.toLaTeX() + "}"
     }
 
-    override fun differentiated(unknown: Unknown): Node {
+    override fun differentiated(unknown: Unknown): Expression {
         return Division(
                 Addition(
                         Multiplication(numerator.differentiated(unknown), denominator),
@@ -30,7 +30,7 @@ class Division(var numerator: Node, var denominator: Node) : Node() {
         )
     }
 
-    override fun integrated(unknown: Unknown): Node {
+    override fun integrated(unknown: Unknown): Expression {
         // TODO: Replace Integer with NumericalValue
         if (numerator is Integer && denominator is Integer) {
             return Multiplication(this, unknown)

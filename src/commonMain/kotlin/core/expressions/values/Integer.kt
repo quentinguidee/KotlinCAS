@@ -1,14 +1,14 @@
-package core.nodes.values
+package core.expressions.values
 
 import core.Sign
-import core.nodes.Node
+import core.expressions.Expression
 import kotlin.math.sign
 
 class Integer(var value: Int) : Value() {
     override val sign: Sign
         get() = Sign.values().first { it.value == value.sign }
 
-    override fun simplified(): Node {
+    override fun simplified(): Expression {
         return this
     }
 

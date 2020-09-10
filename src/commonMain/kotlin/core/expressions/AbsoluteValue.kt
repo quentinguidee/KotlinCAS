@@ -1,13 +1,13 @@
-package core.nodes
+package core.expressions
 
 import core.Sign
-import core.nodes.values.Unknown
+import core.expressions.values.Unknown
 
-class AbsoluteValue(var argument: Node) : Node() {
+class AbsoluteValue(var argument: Expression) : Expression() {
     override val sign: Sign
         get() = Sign.POSITIVE
 
-    override fun simplified(): Node {
+    override fun simplified(): Expression {
         return argument.simplified().absoluteValue()
     }
 
@@ -19,14 +19,14 @@ class AbsoluteValue(var argument: Node) : Node() {
         return "\\left|" + argument.toLaTeX() + "\\right|"
     }
 
-    override fun differentiated(unknown: Unknown): Node {
+    override fun differentiated(unknown: Unknown): Expression {
         return Multiplication(
                 argument.differentiated(unknown),
                 Division(this, argument)
         )
     }
 
-    override fun integrated(unknown: Unknown): Node {
+    override fun integrated(unknown: Unknown): Expression {
         return if (argument.sign == Sign.POSITIVE) {
             argument.integrated(unknown)
         } else {
@@ -36,5 +36,5 @@ class AbsoluteValue(var argument: Node) : Node() {
 }
 
 interface AbsoluteValuable {
-    fun absoluteValue(): Node
+    fun absoluteValue(): Expression
 }
