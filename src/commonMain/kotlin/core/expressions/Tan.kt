@@ -16,7 +16,7 @@ class Tan(var argument: Expression) : Expression() {
     }
 
     override fun toLaTeX(): String {
-        return "\\tan{(" + argument.toLaTeX() + ")}"
+        return "\\tan{(${argument.toLaTeX()})}"
     }
 
     override fun differentiated(unknown: Unknown): Expression {

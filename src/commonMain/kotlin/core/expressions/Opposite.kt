@@ -16,7 +16,7 @@ class Opposite(var argument: Expression) : Expression() {
     }
 
     override fun toLaTeX(): String {
-        return "-" + argument.toLaTeX()
+        return "-${argument.toLaTeX()}"
     }
 
     override fun opposite(): Expression {

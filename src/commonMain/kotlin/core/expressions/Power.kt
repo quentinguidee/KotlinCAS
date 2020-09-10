@@ -18,7 +18,7 @@ class Power(var base: Expression, var power: Expression) : Expression() {
     }
 
     override fun toLaTeX(): String {
-        return "{" + base.toLaTeX() + "}^{" + power.toLaTeX() + "}"
+        return "{${base.toLaTeX()}}^{${power.toLaTeX()}}"
     }
 
     override fun differentiated(unknown: Unknown): Expression {

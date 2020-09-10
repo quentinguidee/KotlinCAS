@@ -18,7 +18,7 @@ class Division(var numerator: Expression, var denominator: Expression) : Express
     }
 
     override fun toLaTeX(): String {
-        return "\\frac{" + numerator.toLaTeX() + "}{" + denominator.toLaTeX() + "}"
+        return "\\frac{${numerator.toLaTeX()}}{${denominator.toLaTeX()}}"
     }
 
     override fun differentiated(unknown: Unknown): Expression {

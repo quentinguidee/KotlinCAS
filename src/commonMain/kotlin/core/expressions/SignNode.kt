@@ -16,6 +16,6 @@ class SignNode(var argument: Expression) : Expression() {
     }
 
     override fun toLaTeX(): String {
-        return "sign\\left(" + argument.toLaTeX() + "\\right)"
+        return "sign\\left(${argument.toLaTeX()}\\right)"
     }
 }

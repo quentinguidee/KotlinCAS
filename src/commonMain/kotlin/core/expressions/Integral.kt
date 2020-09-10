@@ -18,7 +18,7 @@ class Integral(var unknown: Unknown, var argument: Expression) : Expression() {
     }
 
     override fun toLaTeX(): String {
-        return "\\int{" + argument.toLaTeX() + "d" + unknown.toLaTeX() + "}"
+        return "\\int{${argument.toLaTeX()}d${unknown.toLaTeX()}}"
     }
 }
 

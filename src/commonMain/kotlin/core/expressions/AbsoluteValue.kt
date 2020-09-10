@@ -16,7 +16,7 @@ class AbsoluteValue(var argument: Expression) : Expression() {
     }
 
     override fun toLaTeX(): String {
-        return "\\left|" + argument.toLaTeX() + "\\right|"
+        return "\\left|${argument.toLaTeX()}\\right|"
     }
 
     override fun differentiated(unknown: Unknown): Expression {

@@ -16,7 +16,7 @@ class Cos(var argument: Expression) : Expression() {
     }
 
     override fun toLaTeX(): String {
-        return "\\cos{(" + argument.toLaTeX() + ")}"
+        return "\\cos{(${argument.toLaTeX()})}"
     }
 
     override fun differentiated(unknown: Unknown): Expression {

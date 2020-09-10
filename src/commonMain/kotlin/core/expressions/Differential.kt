@@ -18,7 +18,7 @@ class Differential(var unknown: Unknown, var argument: Expression) : Expression(
     }
 
     override fun toLaTeX(): String {
-        return "\\frac{d}{dx}\\left(" + argument.toLaTeX() + "\\right)"
+        return "\\frac{d}{dx}\\left(${argument.toLaTeX()}\\right)"
     }
 }
 

@@ -29,9 +29,9 @@ class Root(
     override fun toLaTeX(): String {
         val index = this.index
         return if (index is Integer && index.toInt() == 2) {
-            "\\sqrt{" + radicand.toLaTeX() + "}"
+            "\\sqrt{${radicand.toLaTeX()}}"
         } else {
-            "\\sqrt[" + index.toLaTeX() + "]{" + radicand.toLaTeX() + "}"
+            "\\sqrt[${index.toLaTeX()}]{${radicand.toLaTeX()}}"
         }
     }
 

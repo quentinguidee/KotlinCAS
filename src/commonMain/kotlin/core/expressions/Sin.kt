@@ -16,7 +16,7 @@ class Sin(var argument: Expression) : Expression() {
     }
 
     override fun toLaTeX(): String {
-        return "\\sin{(" + argument.toLaTeX() + ")}"
+        return "\\sin{(${argument.toLaTeX()})}"
     }
 
     override fun differentiated(unknown: Unknown): Expression {
