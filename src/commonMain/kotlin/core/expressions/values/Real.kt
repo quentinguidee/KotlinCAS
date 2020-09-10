@@ -25,4 +25,8 @@ open class Real(var value: Double) : Value() {
     override fun toLaTeX(): String {
         return toString()
     }
+
+    fun isZero(): Boolean {
+        return value == 0.0
+    }
 }

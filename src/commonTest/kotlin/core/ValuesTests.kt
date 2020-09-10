@@ -31,6 +31,8 @@ class ValuesTests {
         assertEquals(Integer(-9).integrated().toString(), "-9*x")
         assertFalse(integer.isOdd())
         assertTrue(integer.isEven())
+        assertFalse(integer.isZero())
+        assertTrue(Integer(0).isZero())
     }
 
     @Test
