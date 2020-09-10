@@ -11,6 +11,13 @@ class Addition(vararg children: Expression) : MultiNode("+", *children) {
         return this
     }
 
+    override fun equals(other: Any?): Boolean {
+        return when (other) {
+            is Addition -> other.children == children
+            else -> false
+        }
+    }
+
     override fun integrated(unknown: Unknown): Expression {
         return Addition(*children.map { child -> child.integrated(unknown) }.toTypedArray())
     }

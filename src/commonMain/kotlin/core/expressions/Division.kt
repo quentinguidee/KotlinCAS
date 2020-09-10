@@ -21,6 +21,13 @@ class Division(var numerator: Expression, var denominator: Expression) : Express
         return "\\frac{${numerator.toLaTeX()}}{${denominator.toLaTeX()}}"
     }
 
+    override fun equals(other: Any?): Boolean {
+        return when (other) {
+            is Division -> other.numerator == numerator && other.denominator == denominator
+            else -> false
+        }
+    }
+
     override fun differentiated(unknown: Unknown): Expression {
         return Division(
                 Addition(

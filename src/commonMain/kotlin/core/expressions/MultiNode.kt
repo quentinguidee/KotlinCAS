@@ -18,4 +18,6 @@ abstract class MultiNode(val separator: String, vararg children: Expression) : E
     override fun toLaTeX(): String {
         return children.joinToString(separator = separator) { node -> node.toLaTeX() }
     }
+
+    abstract override fun equals(other: Any?): Boolean
 }

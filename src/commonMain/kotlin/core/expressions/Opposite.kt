@@ -19,6 +19,13 @@ class Opposite(var argument: Expression) : Expression() {
         return "-${argument.toLaTeX()}"
     }
 
+    override fun equals(other: Any?): Boolean {
+        return when (other) {
+            is Opposite -> other.argument == argument
+            else -> false
+        }
+    }
+
     override fun opposite(): Expression {
         return argument
     }

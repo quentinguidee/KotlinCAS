@@ -19,6 +19,13 @@ class AbsoluteValue(var argument: Expression) : Expression() {
         return "\\left|${argument.toLaTeX()}\\right|"
     }
 
+    override fun equals(other: Any?): Boolean {
+        return when (other) {
+            is AbsoluteValue -> other.argument == argument
+            else -> false
+        }
+    }
+
     override fun differentiated(unknown: Unknown): Expression {
         return Multiplication(
                 argument.differentiated(unknown),

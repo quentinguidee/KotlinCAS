@@ -21,6 +21,13 @@ class Power(var base: Expression, var power: Expression) : Expression() {
         return "{${base.toLaTeX()}}^{${power.toLaTeX()}}"
     }
 
+    override fun equals(other: Any?): Boolean {
+        return when (other) {
+            is Power -> other.base == base && other.power == power
+            else -> false
+        }
+    }
+
     override fun differentiated(unknown: Unknown): Expression {
         val base = this.base
         if (base is Unknown && base.symbol == unknown.symbol) {

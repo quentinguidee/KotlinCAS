@@ -18,4 +18,11 @@ class SignNode(var argument: Expression) : Expression() {
     override fun toLaTeX(): String {
         return "sign\\left(${argument.toLaTeX()}\\right)"
     }
+
+    override fun equals(other: Any?): Boolean {
+        return when (other) {
+            is SignNode -> other.argument == argument
+            else -> false
+        }
+    }
 }

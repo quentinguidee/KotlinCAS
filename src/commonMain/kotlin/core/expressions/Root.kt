@@ -35,6 +35,13 @@ class Root(
         }
     }
 
+    override fun equals(other: Any?): Boolean {
+        return when (other) {
+            is Root -> other.radicand == radicand && other.index == index
+            else -> false
+        }
+    }
+
     override fun differentiated(unknown: Unknown): Expression {
         return Power(radicand, Division(Integer(1), index))
     }

@@ -26,6 +26,13 @@ open class Real(var value: Double) : Value() {
         return toString()
     }
 
+    override fun equals(other: Any?): Boolean {
+        return when (other) {
+            is Real -> other.value == value
+            else -> false
+        }
+    }
+
     fun isZero(): Boolean {
         return value == 0.0
     }

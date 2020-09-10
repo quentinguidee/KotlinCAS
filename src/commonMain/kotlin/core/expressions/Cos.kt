@@ -19,6 +19,13 @@ class Cos(var argument: Expression) : Expression() {
         return "\\cos{(${argument.toLaTeX()})}"
     }
 
+    override fun equals(other: Any?): Boolean {
+        return when (other) {
+            is Cos -> other.argument == argument
+            else -> false
+        }
+    }
+
     override fun differentiated(unknown: Unknown): Expression {
         return Multiplication(argument.differentiated(unknown), Opposite(Sin(argument)))
     }

@@ -20,6 +20,13 @@ class Integral(var unknown: Unknown, var argument: Expression) : Expression() {
     override fun toLaTeX(): String {
         return "\\int{${argument.toLaTeX()}d${unknown.toLaTeX()}}"
     }
+
+    override fun equals(other: Any?): Boolean {
+        return when (other) {
+            is Integral -> other.unknown == unknown && other.argument == argument
+            else -> false
+        }
+    }
 }
 
 interface Integrable {

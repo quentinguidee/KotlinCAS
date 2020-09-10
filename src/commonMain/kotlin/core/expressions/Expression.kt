@@ -8,6 +8,7 @@ abstract class Expression : Node(), AbsoluteValuable, Differentiable, Integrable
     abstract val sign: Sign
 
     abstract override fun toString(): String
+    abstract override fun equals(other: Any?): Boolean
 
     override fun absoluteValue(): Expression {
         return AbsoluteValue(this)

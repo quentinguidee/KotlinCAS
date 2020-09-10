@@ -22,6 +22,13 @@ class Unknown(var symbol: String = "x") : Value() {
         return toString()
     }
 
+    override fun equals(other: Any?): Boolean {
+        return when (other) {
+            is Unknown -> other.symbol == symbol
+            else -> false
+        }
+    }
+
     override fun differentiated(unknown: Unknown): Expression {
         return if (symbol == unknown.symbol) Integer(1) else Integer(0)
     }

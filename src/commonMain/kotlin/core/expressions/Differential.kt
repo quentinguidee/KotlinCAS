@@ -20,6 +20,13 @@ class Differential(var unknown: Unknown, var argument: Expression) : Expression(
     override fun toLaTeX(): String {
         return "\\frac{d}{dx}\\left(${argument.toLaTeX()}\\right)"
     }
+
+    override fun equals(other: Any?): Boolean {
+        return when (other) {
+            is Differential -> other.unknown == unknown && other.argument == argument
+            else -> false
+        }
+    }
 }
 
 interface Differentiable {
