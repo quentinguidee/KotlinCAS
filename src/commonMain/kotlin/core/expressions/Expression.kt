@@ -10,6 +10,8 @@ abstract class Expression : Node(), AbsoluteValuable, Differentiable, Integrable
     abstract override fun toString(): String
     abstract override fun equals(other: Any?): Boolean
 
+    abstract fun simplified(): Expression
+
     override fun absoluteValue(): Expression {
         return AbsoluteValue(this)
     }
