@@ -2,6 +2,7 @@ package core.expressions
 
 import core.Sign
 import core.expressions.values.Integer
+import core.expressions.values.Real
 import core.expressions.values.Unknown
 
 class Division(var numerator: Expression, var denominator: Expression) : Expression() {
@@ -31,8 +32,7 @@ class Division(var numerator: Expression, var denominator: Expression) : Express
     }
 
     override fun integrated(unknown: Unknown): Expression {
-        // TODO: Replace Integer with NumericalValue
-        if (numerator is Integer && denominator is Integer) {
+        if (numerator is Real && denominator is Real) {
             return Multiplication(this, unknown)
         }
         return Integral(unknown, argument = this)

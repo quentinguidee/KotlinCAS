@@ -2,6 +2,7 @@ package core.expressions
 
 import core.Sign
 import core.expressions.values.Integer
+import core.expressions.values.Real
 import core.expressions.values.Unknown
 
 class Power(var base: Expression, var power: Expression) : Expression() {
@@ -29,10 +30,9 @@ class Power(var base: Expression, var power: Expression) : Expression() {
     }
 
     override fun integrated(unknown: Unknown): Expression {
-        // TODO: Replace Integer with NumericalValue
         val base = this.base
         val power = this.power
-        if (base is Unknown && power is Integer) {
+        if (base is Unknown && power is Real) {
             return if (base.symbol == unknown.symbol) {
                 Multiplication(
                         Division(Integer(1), Addition(power, Integer(1))),
