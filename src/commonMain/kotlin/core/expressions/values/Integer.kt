@@ -12,4 +12,12 @@ open class Integer(value: Int) : Rational(value.toDouble()) {
     override fun toString(): String {
         return toInt().toString()
     }
+
+    fun isEven(): Boolean {
+        return toInt() % 2 == 0
+    }
+
+    fun isOdd(): Boolean {
+        return toInt() % 2 == 1
+    }
 }

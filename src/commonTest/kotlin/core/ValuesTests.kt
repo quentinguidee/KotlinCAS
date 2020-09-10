@@ -3,6 +3,8 @@ package core
 import core.expressions.values.*
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 class ValuesTests {
     @Test
@@ -13,6 +15,8 @@ class ValuesTests {
         assertEquals(natural.toString(), "3")
         assertEquals(natural.toLaTeX(), "3")
         assertEquals(natural.sign, Sign.POSITIVE)
+        assertTrue(natural.isOdd())
+        assertFalse(natural.isEven())
     }
 
     @Test
@@ -25,6 +29,8 @@ class ValuesTests {
         assertEquals(Integer(-3).sign, Sign.NEGATIVE)
         assertEquals(Integer(-9).differentiated().toString(), "0")
         assertEquals(Integer(-9).integrated().toString(), "-9*x")
+        assertFalse(integer.isOdd())
+        assertTrue(integer.isEven())
     }
 
     @Test
