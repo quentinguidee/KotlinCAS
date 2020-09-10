@@ -74,4 +74,16 @@ class CoreTests {
         assertEquals(Opposite(Integer(0)).sign, Sign.SIGNLESS)
         assertEquals(Opposite(Integer(-3)).sign, Sign.POSITIVE)
     }
+
+    @Test
+    internal fun testRoot() {
+        val sqrt = Root(Integer(9), Integer(2))
+        val cbrt = Root(Integer(8), Integer(3))
+        val root = Root(Integer(16), Integer(4))
+        assertEquals(sqrt.toString(), "sqrt(9)")
+        assertEquals(cbrt.toString(), "cbrt(8)")
+        assertEquals(root.toString(), "root(16,4)")
+        assertEquals(sqrt.toLaTeX(), "\\sqrt{9}")
+        assertEquals(cbrt.toLaTeX(), "\\sqrt[3]{8}")
+    }
 }
