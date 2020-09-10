@@ -17,9 +17,9 @@ class Root(
 
     override fun toString(): String {
         val index = this.index
-        return if (index is Integer && index.value == 2) {
+        return if (index is Integer && index.toInt() == 2) {
             "sqrt($radicand)"
-        } else if (index is Integer && index.value == 3) {
+        } else if (index is Integer && index.toInt() == 3) {
             "cbrt($radicand)"
         } else {
             "root($radicand,$index)"
@@ -28,7 +28,7 @@ class Root(
 
     override fun toLaTeX(): String {
         val index = this.index
-        return if (index is Integer && index.value == 2) {
+        return if (index is Integer && index.toInt() == 2) {
             "\\sqrt{" + radicand.toLaTeX() + "}"
         } else {
             "\\sqrt[" + index.toLaTeX() + "]{" + radicand.toLaTeX() + "}"

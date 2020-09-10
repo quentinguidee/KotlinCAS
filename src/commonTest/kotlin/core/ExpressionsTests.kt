@@ -6,33 +6,7 @@ import core.expressions.values.Unknown
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class CoreTests {
-    @Test
-    internal fun testInteger() {
-        val integer = Integer(2)
-        assertEquals(integer.toString(), "2")
-        assertEquals(integer.toLaTeX(), "2")
-        assertEquals(Integer(3).sign, Sign.POSITIVE)
-        assertEquals(Integer(0).sign, Sign.SIGNLESS)
-        assertEquals(Integer(-3).sign, Sign.NEGATIVE)
-        assertEquals(Integer(-9).differentiated().toString(), "0")
-        assertEquals(Integer(-9).integrated().toString(), "-9*x")
-    }
-
-    @Test
-    internal fun testUnknown() {
-        val unknownX = Unknown()
-        val unknownY = Unknown("y")
-        assertEquals(unknownX.toString(), "x")
-        assertEquals(unknownY.toString(), "y")
-        assertEquals(unknownX.toLaTeX(), "x")
-        assertEquals(unknownY.toString(), "y")
-        assertEquals(Unknown().differentiated().toString(), "1")
-        assertEquals(Unknown().differentiated(unknownY).toString(), "0")
-        assertEquals(Unknown().integrated().toString(), "x^2/2")
-        assertEquals(Unknown().integrated(unknownY).toString(), "x*y")
-    }
-
+class ExpressionsTests {
     @Test
     fun testPow() {
         val power = Power(Integer(2), Integer(3))

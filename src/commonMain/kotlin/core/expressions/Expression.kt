@@ -7,6 +7,8 @@ import core.expressions.values.Unknown
 abstract class Expression : Node(), AbsoluteValuable, Differentiable, Integrable, Opposable {
     abstract val sign: Sign
 
+    abstract override fun toString(): String
+
     override fun absoluteValue(): Expression {
         return AbsoluteValue(this)
     }
@@ -22,6 +24,4 @@ abstract class Expression : Node(), AbsoluteValuable, Differentiable, Integrable
     override fun opposite(): Expression {
         return Opposite(this)
     }
-
-    abstract override fun toString(): String
 }

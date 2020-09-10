@@ -1,22 +1,15 @@
 package core.expressions.values
 
-import core.Sign
-import core.expressions.Expression
-import kotlin.math.sign
+open class Integer(value: Int) : Rational(value.toDouble()) {
+    fun toInt(): Int {
+        return value.toInt()
+    }
 
-class Integer(var value: Int) : Value() {
-    override val sign: Sign
-        get() = Sign.values().first { it.value == value.sign }
-
-    override fun simplified(): Expression {
-        return this
+    fun toRational(): Rational {
+        return Rational(value)
     }
 
     override fun toString(): String {
-        return value.toString()
-    }
-
-    override fun toLaTeX(): String {
-        return toString()
+        return toInt().toString()
     }
 }
