@@ -25,6 +25,14 @@ class AbsoluteValue(var argument: Node) : Node() {
                 Division(this, argument)
         )
     }
+
+    override fun integrated(unknown: Unknown): Node {
+        return if (argument.sign == Sign.POSITIVE) {
+            argument.integrated(unknown)
+        } else {
+            Multiplication(argument.integrated(unknown), SignNode(unknown))
+        }
+    }
 }
 
 interface AbsoluteValuable {

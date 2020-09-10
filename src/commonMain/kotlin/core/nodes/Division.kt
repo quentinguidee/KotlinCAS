@@ -29,4 +29,12 @@ class Division(var numerator: Node, var denominator: Node) : Node() {
                 Power(denominator, Integer(2))
         )
     }
+
+    override fun integrated(unknown: Unknown): Node {
+        // TODO: Replace Integer with NumericalValue
+        if (numerator is Integer && denominator is Integer) {
+            return Multiplication(this, unknown)
+        }
+        return Integral(unknown, argument = this)
+    }
 }

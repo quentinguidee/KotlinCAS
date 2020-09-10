@@ -1,7 +1,7 @@
 package core.nodes
 
 abstract class MultiNode(val separator: String, vararg children: Node) : Node() {
-    private var children: ArrayList<Node> = ArrayList(children.asList())
+    protected var children: ArrayList<Node> = ArrayList(children.asList())
 
     fun add(child: Node) {
         this.children.add(child)

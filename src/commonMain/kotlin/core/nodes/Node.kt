@@ -3,7 +3,7 @@ package core.nodes
 import core.Sign
 import core.nodes.values.Unknown
 
-abstract class Node : AbsoluteValuable, Differentiable, Opposable {
+abstract class Node : AbsoluteValuable, Differentiable, Integrable, Opposable {
     abstract val sign: Sign
 
     abstract fun simplified(): Node
@@ -16,6 +16,10 @@ abstract class Node : AbsoluteValuable, Differentiable, Opposable {
 
     override fun differentiated(unknown: Unknown): Node {
         return Differential(unknown, this)
+    }
+
+    override fun integrated(unknown: Unknown): Node {
+        return Integral(unknown, this)
     }
 
     override fun opposite(): Node {

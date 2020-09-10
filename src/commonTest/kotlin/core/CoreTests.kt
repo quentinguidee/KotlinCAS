@@ -16,6 +16,7 @@ class CoreTests {
         assertEquals(Integer(0).sign, Sign.SIGNLESS)
         assertEquals(Integer(-3).sign, Sign.NEGATIVE)
         assertEquals(Integer(-9).differentiated().toString(), "0")
+        assertEquals(Integer(-9).integrated().toString(), "-9*x")
     }
 
     @Test
@@ -26,8 +27,10 @@ class CoreTests {
         assertEquals(unknownY.toString(), "y")
         assertEquals(unknownX.toLaTeX(), "x")
         assertEquals(unknownY.toString(), "y")
-        assertEquals(unknownX.differentiated().toString(), "1")
-        assertEquals(unknownX.differentiated(unknownY).toString(), "0")
+        assertEquals(Unknown().differentiated().toString(), "1")
+        assertEquals(Unknown().differentiated(unknownY).toString(), "0")
+        assertEquals(Unknown().integrated().toString(), "x^2/2")
+        assertEquals(Unknown().integrated(unknownY).toString(), "x*y")
     }
 
     @Test
@@ -38,6 +41,7 @@ class CoreTests {
         assertEquals(power.differentiated().toString(), "0")
         assertEquals(Power(Unknown(), Integer(3)).differentiated().toString(), "3*x^3+-1")
         assertEquals(Power(Unknown(), Integer(2)).differentiated().toString(), "2*x^2+-1")
+        assertEquals(Power(Unknown(), Integer(2)).integrated().toString(), "1/2+1*x^2+1")
     }
 
     @Test
@@ -46,6 +50,7 @@ class CoreTests {
         assertEquals(division.toString(), "2/4")
         assertEquals(division.toLaTeX(), "\\frac{2}{4}")
         assertEquals(division.differentiated().toString(), "0*4+-2*0/4^2")
+        assertEquals(division.integrated().toString(), "2/4*x")
     }
 
     @Test
@@ -54,6 +59,7 @@ class CoreTests {
         assertEquals(addition.toString(), "1+2+10")
         assertEquals(addition.toLaTeX(), "1+2+10")
         assertEquals(addition.differentiated().toString(), "d/dx(1+2+10)")
+        assertEquals(addition.integrated().toString(), "1*x+2*x+10*x")
     }
 
     @Test
@@ -62,6 +68,7 @@ class CoreTests {
         assertEquals(absoluteValue.toString(), "|3|")
         assertEquals(absoluteValue.toLaTeX(), "\\left|3\\right|")
         assertEquals(AbsoluteValue(Unknown()).differentiated().toString(), "1*|x|/x")
+        assertEquals(AbsoluteValue(Unknown()).integrated().toString(), "x^2/2*sign(x)")
     }
 
     @Test
@@ -70,6 +77,7 @@ class CoreTests {
         assertEquals(sin.toString(), "sin(3)")
         assertEquals(sin.toLaTeX(), "\\sin{(3)}")
         assertEquals(Sin(Unknown()).differentiated().toString(), "1*cos(x)")
+        assertEquals(Sin(Unknown()).integrated().toString(), "∫sin(x) dx")
     }
 
     @Test
@@ -78,6 +86,7 @@ class CoreTests {
         assertEquals(cos.toString(), "cos(3)")
         assertEquals(cos.toLaTeX(), "\\cos{(3)}")
         assertEquals(Cos(Unknown()).differentiated().toString(), "1*-sin(x)")
+        assertEquals(Cos(Unknown()).integrated().toString(), "∫cos(x) dx")
     }
 
     @Test
@@ -86,6 +95,7 @@ class CoreTests {
         assertEquals(tan.toString(), "tan(3)")
         assertEquals(tan.toLaTeX(), "\\tan{(3)}")
         assertEquals(tan.differentiated().toString(), "0*cos(3)*cos(3)+-sin(3)*0*-sin(3)/cos(3)^2")
+        assertEquals(tan.integrated().toString(), "∫tan(3) dx")
     }
 
     @Test
@@ -98,6 +108,7 @@ class CoreTests {
         assertEquals(Opposite(Integer(0)).sign, Sign.SIGNLESS)
         assertEquals(Opposite(Integer(-3)).sign, Sign.POSITIVE)
         assertEquals(opposite.differentiated().toString(), "-0")
+        assertEquals(opposite.integrated().toString(), "-3*x")
     }
 
     @Test
@@ -111,6 +122,7 @@ class CoreTests {
         assertEquals(sqrt.toLaTeX(), "\\sqrt{9}")
         assertEquals(cbrt.toLaTeX(), "\\sqrt[3]{8}")
         assertEquals(sqrt.differentiated().toString(), "9^1/2")
+        assertEquals(sqrt.integrated().toString(), "∫sqrt(9) dx")
     }
 
     @Test
@@ -119,5 +131,15 @@ class CoreTests {
         assertEquals(differential.toString(), "d/dx(x)")
         assertEquals(differential.toLaTeX(), "\\frac{d}{dx}\\left(x\\right)")
         assertEquals(differential.differentiated().toString(), "d/dx(d/dx(x))")
+        assertEquals(differential.integrated().toString(), "∫d/dx(x) dx")
+    }
+
+    @Test
+    fun testIntegral() {
+        val integral = Integral(Unknown())
+        assertEquals(integral.toString(), "∫x dx")
+        assertEquals(integral.toLaTeX(), "\\int{xdx}")
+        assertEquals(integral.differentiated().toString(), "d/dx(∫x dx)")
+        assertEquals(integral.integrated().toString(), "∫∫x dx dx")
     }
 }

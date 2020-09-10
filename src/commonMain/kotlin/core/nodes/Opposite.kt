@@ -26,6 +26,10 @@ class Opposite(var argument: Node) : Node() {
     override fun differentiated(unknown: Unknown): Node {
         return Opposite(argument.differentiated(unknown))
     }
+
+    override fun integrated(unknown: Unknown): Node {
+        return Opposite(argument.integrated(unknown))
+    }
 }
 
 interface Opposable {
