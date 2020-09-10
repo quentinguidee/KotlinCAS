@@ -13,99 +13,99 @@ class ExpressionsTests {
     @Test
     internal fun testPow() {
         val power = Power(Integer(2), Integer(3))
-        assertEquals(power.toString(), "2^3")
-        assertEquals(power.toLaTeX(), "{2}^{3}")
-        assertEquals(power.differentiated().toString(), "0")
-        assertEquals(Power(Unknown(), Integer(3)).differentiated().toString(), "3*x^3+-1")
-        assertEquals(Power(Unknown(), Integer(2)).differentiated().toString(), "2*x^2+-1")
-        assertEquals(Power(Unknown(), Integer(2)).integrated().toString(), "1/2+1*x^2+1")
+        assertEquals("2^3", power.toString())
+        assertEquals("{2}^{3}", power.toLaTeX())
+        assertEquals("0", power.differentiated().toString())
+        assertEquals("3*x^3+-1", Power(Unknown(), Integer(3)).differentiated().toString())
+        assertEquals("2*x^2+-1", Power(Unknown(), Integer(2)).differentiated().toString())
+        assertEquals("1/2+1*x^2+1", Power(Unknown(), Integer(2)).integrated().toString())
         assertEquals(Power(Natural(1), Natural(2)), Power(Natural(1), Natural(2)))
-        assertNotEquals(Power(Natural(1), Natural(2)), Power(Natural(2), Natural(1)))
+        assertNotEquals(Power(Natural(2), Natural(1)), Power(Natural(1), Natural(2)))
     }
 
     @Test
     internal fun testDivision() {
         val division = Division(Integer(2), Integer(4))
-        assertEquals(division.toString(), "2/4")
-        assertEquals(division.toLaTeX(), "\\frac{2}{4}")
-        assertEquals(division.differentiated().toString(), "0*4+-2*0/4^2")
-        assertEquals(division.integrated().toString(), "2/4*x")
-        assertEquals(division, Division(Integer(2), Integer(4)))
-        assertNotEquals(division, Division(Integer(2), Integer(1)))
+        assertEquals("2/4", division.toString())
+        assertEquals("\\frac{2}{4}", division.toLaTeX())
+        assertEquals("0*4+-2*0/4^2", division.differentiated().toString())
+        assertEquals("2/4*x", division.integrated().toString())
+        assertEquals(Division(Integer(2), Integer(4)), division)
+        assertNotEquals(Division(Integer(2), Integer(1)), division)
     }
 
     @Test
     internal fun testAddition() {
         val addition = Addition(Integer(1), Integer(2), Integer(10))
-        assertEquals(addition.toString(), "1+2+10")
-        assertEquals(addition.toLaTeX(), "1+2+10")
-        assertEquals(addition.differentiated().toString(), "d/dx(1+2+10)")
-        assertEquals(addition.integrated().toString(), "1*x+2*x+10*x")
-        assertEquals(addition, Addition(Integer(1), Integer(2), Integer(10)))
-        assertNotEquals(addition, Addition(Integer(1), Integer(10), Integer(2)))
-        assertNotEquals(addition, Addition(Integer(1), Integer(10), Integer(10), Integer(2)))
+        assertEquals("1+2+10", addition.toString())
+        assertEquals("1+2+10", addition.toLaTeX())
+        assertEquals("d/dx(1+2+10)", addition.differentiated().toString())
+        assertEquals("1*x+2*x+10*x", addition.integrated().toString())
+        assertEquals(Addition(Integer(1), Integer(2), Integer(10)), addition)
+        assertNotEquals(Addition(Integer(1), Integer(10), Integer(2)), addition)
+        assertNotEquals(Addition(Integer(1), Integer(10), Integer(10), Integer(2)), addition)
     }
 
     @Test
     internal fun testAbsoluteValue() {
         val absoluteValue = AbsoluteValue(Integer(3))
-        assertEquals(absoluteValue.toString(), "|3|")
-        assertEquals(absoluteValue.toLaTeX(), "\\left|3\\right|")
-        assertEquals(AbsoluteValue(Unknown()).differentiated().toString(), "1*|x|/x")
-        assertEquals(AbsoluteValue(Unknown()).integrated().toString(), "x^2/2*sign(x)")
-        assertEquals(absoluteValue, AbsoluteValue(Natural(3)))
-        assertNotEquals(absoluteValue, AbsoluteValue(Natural(1)))
+        assertEquals("|3|", absoluteValue.toString())
+        assertEquals("\\left|3\\right|", absoluteValue.toLaTeX())
+        assertEquals("1*|x|/x", AbsoluteValue(Unknown()).differentiated().toString())
+        assertEquals("x^2/2*sign(x)", AbsoluteValue(Unknown()).integrated().toString())
+        assertEquals(AbsoluteValue(Natural(3)), absoluteValue)
+        assertNotEquals(AbsoluteValue(Natural(1)), absoluteValue)
     }
 
     @Test
     internal fun testSin() {
         val sin = Sin(Integer(3))
-        assertEquals(sin.toString(), "sin(3)")
-        assertEquals(sin.toLaTeX(), "\\sin{(3)}")
-        assertEquals(Sin(Unknown()).differentiated().toString(), "1*cos(x)")
-        assertEquals(Sin(Unknown()).integrated().toString(), "∫sin(x) dx")
-        assertNotEquals<Expression>(Sin(Unknown()), Cos(Unknown()))
+        assertEquals("sin(3)", sin.toString())
+        assertEquals("\\sin{(3)}", sin.toLaTeX())
+        assertEquals("1*cos(x)", Sin(Unknown()).differentiated().toString())
+        assertEquals("∫sin(x) dx", Sin(Unknown()).integrated().toString())
+        assertNotEquals<Expression>(Cos(Unknown()), Sin(Unknown()))
         assertEquals(Sin(Unknown()), Sin(Unknown()))
-        assertNotEquals(Sin(Unknown()), Sin(Unknown("y")))
+        assertNotEquals(Sin(Unknown("y")), Sin(Unknown()))
     }
 
     @Test
     internal fun testCos() {
         val cos = Cos(Integer(3))
-        assertEquals(cos.toString(), "cos(3)")
-        assertEquals(cos.toLaTeX(), "\\cos{(3)}")
-        assertEquals(Cos(Unknown()).differentiated().toString(), "1*-sin(x)")
-        assertEquals(Cos(Unknown()).integrated().toString(), "∫cos(x) dx")
-        assertNotEquals<Expression>(Cos(Unknown()), Sin(Unknown()))
+        assertEquals("cos(3)", cos.toString())
+        assertEquals("\\cos{(3)}", cos.toLaTeX())
+        assertEquals("1*-sin(x)", Cos(Unknown()).differentiated().toString())
+        assertEquals("∫cos(x) dx", Cos(Unknown()).integrated().toString())
+        assertNotEquals<Expression>(Sin(Unknown()), Cos(Unknown()))
         assertEquals(Cos(Unknown()), Cos(Unknown()))
-        assertNotEquals(Cos(Unknown()), Cos(Unknown("y")))
+        assertNotEquals(Cos(Unknown("y")), Cos(Unknown()))
     }
 
     @Test
     internal fun testTan() {
         val tan = Tan(Integer(3))
-        assertEquals(tan.toString(), "tan(3)")
-        assertEquals(tan.toLaTeX(), "\\tan{(3)}")
-        assertEquals(tan.differentiated().toString(), "0*cos(3)*cos(3)+-sin(3)*0*-sin(3)/cos(3)^2")
-        assertEquals(tan.integrated().toString(), "∫tan(3) dx")
-        assertNotEquals<Expression>(Tan(Unknown()), Sin(Unknown()))
+        assertEquals("tan(3)", tan.toString())
+        assertEquals("\\tan{(3)}", tan.toLaTeX())
+        assertEquals("0*cos(3)*cos(3)+-sin(3)*0*-sin(3)/cos(3)^2", tan.differentiated().toString())
+        assertEquals("∫tan(3) dx", tan.integrated().toString())
+        assertNotEquals<Expression>(Sin(Unknown()), Tan(Unknown()))
         assertEquals(Tan(Unknown()), Tan(Unknown()))
-        assertNotEquals(Tan(Unknown()), Tan(Unknown("y")))
+        assertNotEquals(Tan(Unknown("y")), Tan(Unknown()))
     }
 
     @Test
     internal fun testOpposite() {
         val opposite = Opposite(Integer(3))
-        assertEquals(opposite.toString(), "-3")
-        assertEquals(opposite.toLaTeX(), "-3")
-        assertEquals(Opposite(opposite).simplified().toString(), "3")
-        assertEquals(Opposite(Integer(3)).sign, Sign.NEGATIVE)
-        assertEquals(Opposite(Integer(0)).sign, Sign.SIGNLESS)
-        assertEquals(Opposite(Integer(-3)).sign, Sign.POSITIVE)
-        assertEquals(opposite.differentiated().toString(), "-0")
-        assertEquals(opposite.integrated().toString(), "-3*x")
-        assertEquals(opposite, Opposite(Real(3)))
-        assertNotEquals(opposite, Opposite(Integer(2)))
+        assertEquals("-3", opposite.toString())
+        assertEquals("-3", opposite.toLaTeX())
+        assertEquals("3", Opposite(opposite).simplified().toString())
+        assertEquals(Sign.NEGATIVE, Opposite(Integer(3)).sign)
+        assertEquals(Sign.SIGNLESS, Opposite(Integer(0)).sign)
+        assertEquals(Sign.POSITIVE, Opposite(Integer(-3)).sign)
+        assertEquals("-0", opposite.differentiated().toString())
+        assertEquals("-3*x", opposite.integrated().toString())
+        assertEquals(Opposite(Real(3)), opposite)
+        assertNotEquals(Opposite(Integer(2)), opposite)
     }
 
     @Test
@@ -113,37 +113,37 @@ class ExpressionsTests {
         val sqrt = Root(Integer(9), Integer(2))
         val cbrt = Root(Integer(8), Integer(3))
         val root = Root(Integer(16), Integer(4))
-        assertEquals(sqrt.toString(), "sqrt(9)")
-        assertEquals(cbrt.toString(), "cbrt(8)")
-        assertEquals(root.toString(), "root(16,4)")
-        assertEquals(sqrt.toLaTeX(), "\\sqrt{9}")
-        assertEquals(cbrt.toLaTeX(), "\\sqrt[3]{8}")
-        assertEquals(sqrt.differentiated().toString(), "9^1/2")
-        assertEquals(sqrt.integrated().toString(), "∫sqrt(9) dx")
-        assertEquals(sqrt, Root(Integer(9), Real(2)))
-        assertNotEquals(sqrt, Root(Integer(8), Real(2)))
-        assertEquals(sqrt, Root(Integer(9)))
+        assertEquals("sqrt(9)", sqrt.toString())
+        assertEquals("cbrt(8)", cbrt.toString())
+        assertEquals("root(16,4)", root.toString())
+        assertEquals("\\sqrt{9}", sqrt.toLaTeX())
+        assertEquals("\\sqrt[3]{8}", cbrt.toLaTeX())
+        assertEquals("9^1/2", sqrt.differentiated().toString())
+        assertEquals("∫sqrt(9) dx", sqrt.integrated().toString())
+        assertEquals(Root(Integer(9), Real(2)), sqrt)
+        assertNotEquals(Root(Integer(8), Real(2)), sqrt)
+        assertEquals(Root(Integer(9)), sqrt)
     }
 
     @Test
     internal fun testDifferential() {
         val differential = Differential(Unknown())
-        assertEquals(differential.toString(), "d/dx(x)")
-        assertEquals(differential.toLaTeX(), "\\frac{d}{dx}\\left(x\\right)")
-        assertEquals(differential.differentiated().toString(), "d/dx(d/dx(x))")
-        assertEquals(differential.integrated().toString(), "∫d/dx(x) dx")
-        assertNotEquals(differential, Differential(Unknown("y"), Unknown()))
-        assertEquals(differential, Differential(Unknown()))
+        assertEquals("d/dx(x)", differential.toString())
+        assertEquals("\\frac{d}{dx}\\left(x\\right)", differential.toLaTeX())
+        assertEquals("d/dx(d/dx(x))", differential.differentiated().toString())
+        assertEquals("∫d/dx(x) dx", differential.integrated().toString())
+        assertNotEquals(Differential(Unknown("y"), Unknown()), differential)
+        assertEquals(Differential(Unknown()), differential)
     }
 
     @Test
     internal fun testIntegral() {
         val integral = Integral(Unknown())
-        assertEquals(integral.toString(), "∫x dx")
-        assertEquals(integral.toLaTeX(), "\\int{xdx}")
-        assertEquals(integral.differentiated().toString(), "d/dx(∫x dx)")
-        assertEquals(integral.integrated().toString(), "∫∫x dx dx")
-        assertNotEquals(integral, Integral(Unknown("y"), Unknown()))
-        assertEquals(integral, Integral(Unknown(), Unknown()))
+        assertEquals("∫x dx", integral.toString())
+        assertEquals("\\int{xdx}", integral.toLaTeX())
+        assertEquals("d/dx(∫x dx)", integral.differentiated().toString())
+        assertEquals("∫∫x dx dx", integral.integrated().toString())
+        assertNotEquals(Integral(Unknown("y"), Unknown()), integral)
+        assertEquals(Integral(Unknown(), Unknown()), integral)
     }
 }

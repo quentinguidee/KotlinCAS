@@ -32,7 +32,6 @@ open class Complex(var real: Real, var imaginary: Real) : Value() {
     override fun equals(other: Any?): Boolean {
         return when (other) {
             is Complex -> other.real == real && other.imaginary == imaginary
-            is Real -> other == real && imaginary == Real(0)
             else -> false
         }
     }
