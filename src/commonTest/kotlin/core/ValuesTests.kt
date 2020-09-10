@@ -73,17 +73,19 @@ class ValuesTests {
 
     @Test
     internal fun testComplex() {
-        val complex = Complex(Real(3), Real(2))
+        val complex = Complex(Integer(3), Imaginary(Integer(2)))
         val complexFromNatural = Natural(6).toInteger().toRational().toReal().toComplex()
+        assertEquals("3+2i", complex.toString())
+        assertEquals("3+2i", complex.toLaTeX())
         assertEquals(3, complex.real.value.toInt())
-        assertEquals(2, complex.imaginary.value.toInt())
+        assertEquals(2, complex.imaginary.value.value.toInt())
         assertEquals(6, complexFromNatural.real.value.toInt())
-        assertEquals(0, complexFromNatural.imaginary.value.toInt())
-        assertEquals(Complex(Integer(3), Integer(2)), complex)
-        assertNotEquals(Complex(Integer(2), Integer(3)), complex)
+        assertEquals(0, complexFromNatural.imaginary.value.value.toInt())
+        assertEquals(Complex(Integer(3), Imaginary(Real(2))), complex)
+        assertNotEquals(Complex(Integer(2), Imaginary(Real(3))), complex)
         // TODO: Should return True, but shouldn't be applied to "equals(other: Any?)"
-        assertNotEquals<Expression>(Natural(2), Complex(Integer(2), Integer(0)))
-        assertNotEquals<Expression>(Natural(3), Complex(Integer(2), Integer(0)))
+        assertNotEquals<Expression>(Natural(2), Complex(Integer(2), Imaginary(Real(0))))
+        assertNotEquals<Expression>(Natural(3), Complex(Integer(2), Imaginary(Real(0))))
     }
 
     @Test

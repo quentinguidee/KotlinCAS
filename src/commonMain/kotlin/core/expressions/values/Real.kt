@@ -11,7 +11,7 @@ open class Real(var value: Double) : Value() {
     constructor(value: Int) : this(value.toDouble())
 
     fun toComplex(): Complex {
-        return Complex(this, Real(0))
+        return Complex(this, Imaginary(Real(0)))
     }
 
     override fun simplified(): Expression {

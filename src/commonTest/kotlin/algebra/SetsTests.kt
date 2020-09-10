@@ -1,9 +1,11 @@
 package algebra
 
+import algebra.sets.EmptySet
 import algebra.sets.FiniteSet
 import core.expressions.values.Integer
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFails
 
 class SetsTests {
     @Test

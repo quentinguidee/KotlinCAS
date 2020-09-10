@@ -3,7 +3,7 @@ package core.expressions.values
 import core.Sign
 import core.expressions.Expression
 
-open class Complex(var real: Real, var imaginary: Real) : Value() {
+open class Complex(var real: Real, var imaginary: Imaginary) : Value() {
     override val sign: Sign
         get() = Sign.UNKNOWN
 
@@ -17,8 +17,8 @@ open class Complex(var real: Real, var imaginary: Real) : Value() {
 
     override fun toString(): String {
         return when (imaginary.sign) {
-            Sign.POSITIVE, Sign.SIGNLESS, Sign.UNKNOWN -> "$real+${imaginary}i"
-            Sign.NEGATIVE -> "$real${imaginary}i"
+            Sign.POSITIVE, Sign.SIGNLESS, Sign.UNKNOWN -> "$real+$imaginary"
+            Sign.NEGATIVE -> "$real$imaginary"
         }
     }
 
