@@ -45,8 +45,8 @@ class ImaginarySet : InfiniteSet("\uD835\uDD40") {
 }
 
 class RealSet : InfiniteSet("ℝ") {
-    override fun contains(expression: Expression): Boolean {
-        return expression is Real
+    override fun contains(element: Expression): Boolean {
+        return element is Real
     }
 
     override fun union(set: Set): Set {
@@ -58,8 +58,8 @@ class RealSet : InfiniteSet("ℝ") {
 }
 
 class RationalSet : InfiniteSet("ℚ") {
-    override fun contains(expression: Expression): Boolean {
-        return expression is Rational
+    override fun contains(element: Expression): Boolean {
+        return element is Rational
     }
 
     override fun union(set: Set): Set {
@@ -71,8 +71,8 @@ class RationalSet : InfiniteSet("ℚ") {
 }
 
 class IntegerSet : InfiniteSet("ℤ") {
-    override fun contains(expression: Expression): Boolean {
-        return expression is Integer
+    override fun contains(element: Expression): Boolean {
+        return element is Integer
     }
 
     override fun union(set: Set): Set {
@@ -84,7 +84,7 @@ class IntegerSet : InfiniteSet("ℤ") {
 }
 
 class NaturalSet : InfiniteSet("ℕ") {
-    override fun contains(expression: Expression): Boolean {
-        return expression is Natural
+    override fun contains(element: Expression): Boolean {
+        return element is Natural
     }
 }
