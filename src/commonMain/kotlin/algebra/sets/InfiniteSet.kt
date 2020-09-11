@@ -20,6 +20,10 @@ abstract class InfiniteSet(var symbol: String) : Set() {
         }
     }
 
+    override fun simplified(): Set {
+        return this
+    }
+
     override fun union(set: Set): Set {
         when (set) {
             is InfiniteSet -> if (set.symbol == symbol) return this
@@ -29,6 +33,17 @@ abstract class InfiniteSet(var symbol: String) : Set() {
             }
         }
         return super.union(set)
+    }
+
+    override fun intersection(set: Set): Set {
+        when (set) {
+            is InfiniteSet -> if (set.symbol == symbol) return this
+            is FiniteSet -> {
+                set.elements.removeAll { element -> !this.contains(element) }
+                return set
+            }
+        }
+        return super.intersection(set)
     }
 }
 
@@ -55,6 +70,13 @@ class RealSet : InfiniteSet("ℝ") {
         }
         return super.union(set)
     }
+
+    override fun intersection(set: Set): Set {
+        if (set is RationalSet || set is IntegerSet || set is NaturalSet) {
+            return set
+        }
+        return super.intersection(set)
+    }
 }
 
 class RationalSet : InfiniteSet("ℚ") {
@@ -65,8 +87,19 @@ class RationalSet : InfiniteSet("ℚ") {
     override fun union(set: Set): Set {
         if (set is IntegerSet || set is NaturalSet) {
             return this
+        } else if (set is Real) {
+            return set
         }
         return super.union(set)
+    }
+
+    override fun intersection(set: Set): Set {
+        if (set is RealSet) {
+            return this
+        } else if (set is IntegerSet || set is NaturalSet) {
+            return set
+        }
+        return super.intersection(set)
     }
 }
 
@@ -78,13 +111,38 @@ class IntegerSet : InfiniteSet("ℤ") {
     override fun union(set: Set): Set {
         if (set is NaturalSet) {
             return this
+        } else if (set is RationalSet || set is RealSet) {
+            return set
         }
         return super.union(set)
+    }
+
+    override fun intersection(set: Set): Set {
+        if (set is RealSet || set is RationalSet) {
+            return this
+        } else if (set is NaturalSet) {
+            return set
+        }
+        return super.intersection(set)
     }
 }
 
 class NaturalSet : InfiniteSet("ℕ") {
     override fun contains(element: Expression): Boolean {
         return element is Natural
+    }
+
+    override fun union(set: Set): Set {
+        if (set is RealSet || set is RationalSet || set is IntegerSet) {
+            return set
+        }
+        return super.intersection(set)
+    }
+
+    override fun intersection(set: Set): Set {
+        if (set is RealSet || set is RationalSet || set is IntegerSet) {
+            return this
+        }
+        return super.intersection(set)
     }
 }

@@ -9,6 +9,10 @@ open class FiniteSet(vararg elements: Expression) : Set() {
         return elements.contains(element)
     }
 
+    override fun simplified(): Set {
+        return this
+    }
+
     fun add(expression: Expression) {
         if (expression in elements) return else elements.add(expression)
     }
@@ -41,6 +45,22 @@ open class FiniteSet(vararg elements: Expression) : Set() {
             is InfiniteSet -> return set.union(this)
         }
         return super.union(set)
+    }
+
+    override fun intersection(set: Set): Set {
+        when (set) {
+            is FiniteSet -> {
+                val newSet = EmptySet()
+                set.elements.forEach { element ->
+                    if (element in this.elements) {
+                        newSet.add(element)
+                    }
+                }
+                return newSet
+            }
+            is InfiniteSet -> return set.intersection(this)
+        }
+        return super.intersection(set)
     }
 }
 

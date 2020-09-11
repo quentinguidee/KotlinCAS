@@ -3,10 +3,15 @@ package algebra.sets
 import core.Node
 import core.expressions.Expression
 
-abstract class Set : Node(), Unionable {
+abstract class Set : Node(), Intersectable, Unionable {
     abstract fun contains(element: Expression): Boolean
+    abstract fun simplified(): Set
 
     override fun union(set: Set): Set {
         return Union(this, set)
+    }
+
+    override fun intersection(set: Set): Set {
+        return Intersection(this, set)
     }
 }
