@@ -19,23 +19,28 @@ abstract class InfiniteSet(var symbol: String) : Set() {
             else -> false
         }
     }
+
+    override fun union(set: Set): Set {
+        when (set) {
+            is InfiniteSet -> if (set.symbol == symbol) return this
+            is FiniteSet -> {
+                set.elements.removeAll { element -> this.contains(element) }
+                if (set.elements.count() == 0) return this
+            }
+        }
+        return super.union(set)
+    }
 }
 
 class ComplexSet : InfiniteSet("ℂ") {
-    override fun contains(expression: Expression): Boolean {
-        return expression is Complex || expression is Real || expression is Imaginary
+    override fun contains(element: Expression): Boolean {
+        return element is Complex || element is Real || element is Imaginary
     }
 }
 
 class ImaginarySet : InfiniteSet("\uD835\uDD40") {
-    override fun contains(expression: Expression): Boolean {
-        return expression is Imaginary
-    }
-}
-
-class RationalSet : InfiniteSet("ℚ") {
-    override fun contains(expression: Expression): Boolean {
-        return expression is Rational
+    override fun contains(element: Expression): Boolean {
+        return element is Imaginary
     }
 }
 
@@ -43,11 +48,38 @@ class RealSet : InfiniteSet("ℝ") {
     override fun contains(expression: Expression): Boolean {
         return expression is Real
     }
+
+    override fun union(set: Set): Set {
+        if (set is RationalSet || set is IntegerSet || set is NaturalSet) {
+            return this
+        }
+        return super.union(set)
+    }
+}
+
+class RationalSet : InfiniteSet("ℚ") {
+    override fun contains(expression: Expression): Boolean {
+        return expression is Rational
+    }
+
+    override fun union(set: Set): Set {
+        if (set is IntegerSet || set is NaturalSet) {
+            return this
+        }
+        return super.union(set)
+    }
 }
 
 class IntegerSet : InfiniteSet("ℤ") {
     override fun contains(expression: Expression): Boolean {
         return expression is Integer
+    }
+
+    override fun union(set: Set): Set {
+        if (set is NaturalSet) {
+            return this
+        }
+        return super.union(set)
     }
 }
 

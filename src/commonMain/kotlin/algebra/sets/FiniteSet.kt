@@ -5,8 +5,8 @@ import core.expressions.Expression
 open class FiniteSet(vararg elements: Expression) : Set() {
     var elements: ArrayList<Expression> = ArrayList(elements.asList())
 
-    override fun contains(expression: Expression): Boolean {
-        return elements.contains(expression)
+    override fun contains(element: Expression): Boolean {
+        return elements.contains(element)
     }
 
     fun add(expression: Expression) {
@@ -30,6 +30,17 @@ open class FiniteSet(vararg elements: Expression) : Set() {
             is FiniteSet -> other.elements == elements
             else -> false
         }
+    }
+
+    override fun union(set: Set): Set {
+        when (set) {
+            is FiniteSet -> {
+                addAll(*set.elements.toTypedArray())
+                return this
+            }
+            is InfiniteSet -> return set.union(this)
+        }
+        return super.union(set)
     }
 }
 
