@@ -5,6 +5,9 @@ import core.expressions.Expression
 open class FiniteSet(vararg elements: Expression) : Set() {
     var elements: ArrayList<Expression> = ArrayList(elements.asList())
 
+    override val cardinal: Int
+        get() = elements.count()
+
     override fun contains(element: Expression): Boolean {
         return elements.contains(element)
     }

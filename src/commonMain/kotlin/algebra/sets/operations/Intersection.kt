@@ -4,6 +4,9 @@ import algebra.sets.Set
 import core.expressions.Expression
 
 class Intersection(vararg sets: Set) : MultiSetOperation("∩", "\\cap", *sets) {
+    override val cardinal: Int
+        get() = TODO("Not yet implemented")
+
     override fun equals(other: Any?): Boolean {
         return when (other) {
             is Intersection -> other.sets == sets

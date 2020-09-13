@@ -4,6 +4,9 @@ import core.expressions.Expression
 import core.expressions.values.*
 
 abstract class InfiniteSet(var symbol: String) : Set() {
+    override val cardinal: Int
+        get() = TODO("Not yet implemented (should be infinity)")
+
     override fun toString(): String {
         return symbol
     }

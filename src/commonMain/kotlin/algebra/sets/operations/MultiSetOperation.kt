@@ -2,7 +2,7 @@ package algebra.sets.operations
 
 import algebra.sets.Set
 
-abstract class MultiSetOperation(var separator: String, var latexSeparator: String, vararg sets: Set) : Set() {
+abstract class MultiSetOperation(var separator: String, var latexSeparator: String, vararg sets: Set) : SetOperation() {
     protected var sets: ArrayList<Set> = ArrayList(sets.asList())
 
     override fun toString(): String {

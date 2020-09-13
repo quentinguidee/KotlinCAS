@@ -5,6 +5,9 @@ import algebra.sets.Set
 import core.expressions.Expression
 
 class Union(vararg sets: Set) : MultiSetOperation("∪", "\\cup", *sets) {
+    override val cardinal: Int
+        get() = TODO("Not yet implemented")
+
     override fun contains(element: Expression): Boolean {
         sets.forEach { set -> if (set.contains(element)) return true }
         return false
