@@ -13,7 +13,7 @@ open class FiniteSet(vararg elements: Expression) : Set() {
     }
 
     override fun simplified(): Set {
-        return this
+        TODO("Not yet implemented")
     }
 
     fun add(expression: Expression) {
@@ -21,7 +21,7 @@ open class FiniteSet(vararg elements: Expression) : Set() {
     }
 
     fun addAll(vararg expressions: Expression) {
-        expressions.forEach { expression -> add(expression) }
+        expressions.forEach { add(it) }
     }
 
     override fun toString(): String {

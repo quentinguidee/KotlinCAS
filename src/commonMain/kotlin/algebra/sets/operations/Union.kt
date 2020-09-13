@@ -26,7 +26,3 @@ class Union(vararg sets: Set) : MultiSetOperation("∪", "\\cup", *sets) {
         }
     }
 }
-
-interface Unionable {
-    fun union(set: Set): Set
-}

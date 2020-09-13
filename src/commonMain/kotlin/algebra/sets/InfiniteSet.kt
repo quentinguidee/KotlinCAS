@@ -7,9 +7,7 @@ abstract class InfiniteSet(var symbol: String) : Set() {
     override val cardinal: Int
         get() = TODO("Not yet implemented (should be infinity)")
 
-    override fun toString(): String {
-        return symbol
-    }
+    override fun toString(): String = symbol
 
     override fun toLaTeX(): String {
         // TODO: Return the LaTeX Symbols
@@ -24,7 +22,7 @@ abstract class InfiniteSet(var symbol: String) : Set() {
     }
 
     override fun simplified(): Set {
-        return this
+        TODO("Not yet implemented")
     }
 
     override fun union(set: Set): Set {
@@ -57,15 +55,11 @@ class ComplexSet : InfiniteSet("ℂ") {
 }
 
 class ImaginarySet : InfiniteSet("\uD835\uDD40") {
-    override fun contains(element: Expression): Boolean {
-        return element is Imaginary
-    }
+    override fun contains(element: Expression): Boolean = element is Imaginary
 }
 
 class RealSet : InfiniteSet("ℝ") {
-    override fun contains(element: Expression): Boolean {
-        return element is Real
-    }
+    override fun contains(element: Expression): Boolean = element is Real
 
     override fun union(set: Set): Set {
         if (set is RationalSet || set is IntegerSet || set is NaturalSet) {
@@ -83,9 +77,7 @@ class RealSet : InfiniteSet("ℝ") {
 }
 
 class RationalSet : InfiniteSet("ℚ") {
-    override fun contains(element: Expression): Boolean {
-        return element is Rational
-    }
+    override fun contains(element: Expression): Boolean = element is Rational
 
     override fun union(set: Set): Set {
         if (set is IntegerSet || set is NaturalSet) {
@@ -107,9 +99,7 @@ class RationalSet : InfiniteSet("ℚ") {
 }
 
 class IntegerSet : InfiniteSet("ℤ") {
-    override fun contains(element: Expression): Boolean {
-        return element is Integer
-    }
+    override fun contains(element: Expression): Boolean = element is Integer
 
     override fun union(set: Set): Set {
         if (set is NaturalSet) {
@@ -131,9 +121,7 @@ class IntegerSet : InfiniteSet("ℤ") {
 }
 
 class NaturalSet : InfiniteSet("ℕ") {
-    override fun contains(element: Expression): Boolean {
-        return element is Natural
-    }
+    override fun contains(element: Expression): Boolean = element is Natural
 
     override fun union(set: Set): Set {
         if (set is RealSet || set is RationalSet || set is IntegerSet) {

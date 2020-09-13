@@ -25,7 +25,3 @@ class Intersection(vararg sets: Set) : MultiSetOperation("∩", "\\cap", *sets) 
         return set
     }
 }
-
-interface Intersectable {
-    fun intersection(set: Set): Set
-}
