@@ -164,4 +164,14 @@ class ExpressionsTests {
         assertEquals(Vector(Unknown(), Integer(2)), vector)
         assertNotEquals(Vector(Unknown(), Integer(3)), vector)
     }
+
+    @Test
+    internal fun testMatrix() {
+        assertEquals(
+            "[[1,2],[3,4]]", Matrix(
+                arrayOf(Integer(1), Integer(2)),
+                arrayOf(Integer(3), Integer(4))
+            ).toString()
+        )
+    }
 }
