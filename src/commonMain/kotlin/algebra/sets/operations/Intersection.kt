@@ -1,8 +1,9 @@
-package algebra.sets
+package algebra.sets.operations
 
+import algebra.sets.Set
 import core.expressions.Expression
 
-class Intersection(vararg sets: Set) : MultiSet("∩", "\\cap", *sets) {
+class Intersection(vararg sets: Set) : MultiSetOperation("∩", "\\cap", *sets) {
     override fun equals(other: Any?): Boolean {
         return when (other) {
             is Intersection -> other.sets == sets

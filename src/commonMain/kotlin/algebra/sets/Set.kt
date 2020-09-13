@@ -1,5 +1,9 @@
 package algebra.sets
 
+import algebra.sets.operations.Intersectable
+import algebra.sets.operations.Intersection
+import algebra.sets.operations.Union
+import algebra.sets.operations.Unionable
 import core.Node
 import core.expressions.Expression
 

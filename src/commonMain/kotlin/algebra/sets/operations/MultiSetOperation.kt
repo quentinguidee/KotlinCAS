@@ -1,6 +1,8 @@
-package algebra.sets
+package algebra.sets.operations
 
-abstract class MultiSet(var separator: String, var latexSeparator: String, vararg sets: Set) : Set() {
+import algebra.sets.Set
+
+abstract class MultiSetOperation(var separator: String, var latexSeparator: String, vararg sets: Set) : Set() {
     protected var sets: ArrayList<Set> = ArrayList(sets.asList())
 
     override fun toString(): String {

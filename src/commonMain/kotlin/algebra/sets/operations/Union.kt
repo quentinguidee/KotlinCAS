@@ -1,8 +1,10 @@
-package algebra.sets
+package algebra.sets.operations
 
+import algebra.sets.EmptySet
+import algebra.sets.Set
 import core.expressions.Expression
 
-class Union(vararg sets: Set) : MultiSet("∪", "\\cup", *sets) {
+class Union(vararg sets: Set) : MultiSetOperation("∪", "\\cup", *sets) {
     override fun contains(element: Expression): Boolean {
         sets.forEach { set -> if (set.contains(element)) return true }
         return false

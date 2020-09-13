@@ -1,8 +1,9 @@
 package algebra
 
 import algebra.sets.*
+import algebra.sets.operations.Intersection
+import algebra.sets.operations.Union
 import core.expressions.values.*
-import kotlin.collections.Set
 import kotlin.test.*
 
 class SetsTests {
