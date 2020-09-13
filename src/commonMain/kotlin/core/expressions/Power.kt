@@ -39,13 +39,8 @@ class Power(var base: Expression, var power: Expression) : Expression() {
         return base.power(power)
     }
 
-    override fun toString(): String {
-        return "$base^$power"
-    }
-
-    override fun toLaTeX(): String {
-        return "{${base.toLaTeX()}}^{${power.toLaTeX()}}"
-    }
+    override fun toString() = "$base^$power"
+    override fun toLaTeX() = "{${base.toLaTeX()}}^{${power.toLaTeX()}}"
 
     override fun equals(other: Any?): Boolean {
         return when (other) {

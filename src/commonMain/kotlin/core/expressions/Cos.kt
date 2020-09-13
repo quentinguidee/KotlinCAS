@@ -7,17 +7,9 @@ class Cos(var argument: Expression) : Expression() {
     override val sign: Sign
         get() = Sign.UNKNOWN
 
-    override fun simplified(): Expression {
-        return Cos(argument.simplified())
-    }
-
-    override fun toString(): String {
-        return "cos($argument)"
-    }
-
-    override fun toLaTeX(): String {
-        return "\\cos{(${argument.toLaTeX()})}"
-    }
+    override fun simplified(): Expression = Cos(argument.simplified())
+    override fun toString(): String = "cos($argument)"
+    override fun toLaTeX(): String = "\\cos{(${argument.toLaTeX()})}"
 
     override fun equals(other: Any?): Boolean {
         return when (other) {

@@ -13,13 +13,8 @@ class Differential(var unknown: Unknown, var argument: Expression) : Expression(
         return argument.differentiated(unknown = unknown)
     }
 
-    override fun toString(): String {
-        return "d/d$unknown($argument)"
-    }
-
-    override fun toLaTeX(): String {
-        return "\\frac{d}{dx}\\left(${argument.toLaTeX()}\\right)"
-    }
+    override fun toString() = "d/d$unknown($argument)"
+    override fun toLaTeX() = "\\frac{d}{dx}\\left(${argument.toLaTeX()}\\right)"
 
     override fun equals(other: Any?): Boolean {
         return when (other) {
@@ -27,8 +22,4 @@ class Differential(var unknown: Unknown, var argument: Expression) : Expression(
             else -> false
         }
     }
-}
-
-interface Differentiable {
-    fun differentiated(unknown: Unknown = Unknown()): Expression
 }

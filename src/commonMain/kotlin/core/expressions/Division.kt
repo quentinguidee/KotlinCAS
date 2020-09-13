@@ -29,13 +29,8 @@ class Division(var numerator: Expression, var denominator: Expression) : Express
         return this
     }
 
-    override fun toString(): String {
-        return "$numerator/$denominator"
-    }
-
-    override fun toLaTeX(): String {
-        return "\\frac{${numerator.toLaTeX()}}{${denominator.toLaTeX()}}"
-    }
+    override fun toString() = "$numerator/$denominator"
+    override fun toLaTeX() = "\\frac{${numerator.toLaTeX()}}{${denominator.toLaTeX()}}"
 
     override fun equals(other: Any?): Boolean {
         return when (other) {

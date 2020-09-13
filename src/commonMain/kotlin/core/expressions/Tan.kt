@@ -7,17 +7,9 @@ class Tan(var argument: Expression) : Expression() {
     override val sign: Sign
         get() = Sign.UNKNOWN
 
-    override fun simplified(): Expression {
-        return Tan(argument.simplified())
-    }
-
-    override fun toString(): String {
-        return "tan($argument)"
-    }
-
-    override fun toLaTeX(): String {
-        return "\\tan{(${argument.toLaTeX()})}"
-    }
+    override fun simplified(): Expression = Tan(argument.simplified())
+    override fun toString() = "tan($argument)"
+    override fun toLaTeX() = "\\tan{(${argument.toLaTeX()})}"
 
     override fun equals(other: Any?): Boolean {
         return when (other) {

@@ -7,17 +7,9 @@ class Sin(var argument: Expression) : Expression() {
     override val sign: Sign
         get() = Sign.UNKNOWN
 
-    override fun simplified(): Expression {
-        return Sin(argument.simplified())
-    }
-
-    override fun toString(): String {
-        return "sin($argument)"
-    }
-
-    override fun toLaTeX(): String {
-        return "\\sin{(${argument.toLaTeX()})}"
-    }
+    override fun simplified(): Expression = Sin(argument.simplified())
+    override fun toString() = "sin($argument)"
+    override fun toLaTeX() = "\\sin{(${argument.toLaTeX()})}"
 
     override fun equals(other: Any?): Boolean {
         return when (other) {

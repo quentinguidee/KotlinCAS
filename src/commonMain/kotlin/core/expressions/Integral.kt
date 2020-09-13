@@ -13,13 +13,8 @@ class Integral(var unknown: Unknown, var argument: Expression) : Expression() {
         TODO("Not yet implemented")
     }
 
-    override fun toString(): String {
-        return "∫$argument d$unknown"
-    }
-
-    override fun toLaTeX(): String {
-        return "\\int{${argument.toLaTeX()}d${unknown.toLaTeX()}}"
-    }
+    override fun toString() = "∫$argument d$unknown"
+    override fun toLaTeX() = "\\int{${argument.toLaTeX()}d${unknown.toLaTeX()}}"
 
     override fun equals(other: Any?): Boolean {
         return when (other) {
@@ -27,8 +22,4 @@ class Integral(var unknown: Unknown, var argument: Expression) : Expression() {
             else -> false
         }
     }
-}
-
-interface Integrable {
-    fun integrated(unknown: Unknown = Unknown()): Expression
 }

@@ -1,23 +1,12 @@
 package core.expressions.values
 
 open class Integer(value: Int) : Rational(value.toDouble()) {
-    fun toInt(): Int {
-        return value.toInt()
-    }
+    fun toInt(): Int = value.toInt()
 
-    fun toRational(): Rational {
-        return Rational(value)
-    }
+    fun toRational() = Rational(value)
 
-    override fun toString(): String {
-        return toInt().toString()
-    }
+    fun isEven() = toInt() % 2 == 0
+    fun isOdd() = toInt() % 2 == 1
 
-    fun isEven(): Boolean {
-        return toInt() % 2 == 0
-    }
-
-    fun isOdd(): Boolean {
-        return toInt() % 2 == 1
-    }
+    override fun toString() = toInt().toString()
 }

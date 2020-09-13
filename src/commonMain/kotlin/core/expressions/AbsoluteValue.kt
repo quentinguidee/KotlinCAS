@@ -12,13 +12,8 @@ class AbsoluteValue(var argument: Expression) : Expression() {
         return argument.simplified().absoluteValue()
     }
 
-    override fun toString(): String {
-        return "|$argument|"
-    }
-
-    override fun toLaTeX(): String {
-        return "\\left|${argument.toLaTeX()}\\right|"
-    }
+    override fun toString() = "|$argument|"
+    override fun toLaTeX() = "\\left|${argument.toLaTeX()}\\right|"
 
     override fun equals(other: Any?): Boolean {
         return when (other) {
@@ -51,8 +46,4 @@ class AbsoluteValue(var argument: Expression) : Expression() {
         (0..5).toList()
         return this
     }
-}
-
-interface AbsoluteValuable {
-    fun absoluteValue(): Expression
 }

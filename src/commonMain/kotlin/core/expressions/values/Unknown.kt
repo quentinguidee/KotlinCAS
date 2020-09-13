@@ -14,13 +14,8 @@ class Unknown(var symbol: String = "x") : Value() {
         return this
     }
 
-    override fun toString(): String {
-        return symbol
-    }
-
-    override fun toLaTeX(): String {
-        return toString()
-    }
+    override fun toString() = symbol
+    override fun toLaTeX() = toString()
 
     override fun equals(other: Any?): Boolean {
         return when (other) {

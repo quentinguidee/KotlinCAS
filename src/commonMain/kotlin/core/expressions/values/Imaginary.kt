@@ -7,9 +7,8 @@ open class Imaginary(var value: Real) : Value() {
     override val sign: Sign
         get() = value.sign
 
-    override fun toString(): String {
-        return "${value}i"
-    }
+    override fun toString() = "${value}i"
+    override fun toLaTeX() = toString()
 
     override fun equals(other: Any?): Boolean {
         return when (other) {
@@ -20,9 +19,5 @@ open class Imaginary(var value: Real) : Value() {
 
     override fun simplified(): Expression {
         return this
-    }
-
-    override fun toLaTeX(): String {
-        return toString()
     }
 }

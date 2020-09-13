@@ -10,21 +10,14 @@ open class Real(var value: Double) : Value() {
 
     constructor(value: Int) : this(value.toDouble())
 
-    fun toComplex(): Complex {
-        return Complex(this, Imaginary(Real(0)))
-    }
+    fun toComplex() = Complex(this, Imaginary(Real(0)))
 
     override fun simplified(): Expression {
         return this
     }
 
-    override fun toString(): String {
-        return value.toString()
-    }
-
-    override fun toLaTeX(): String {
-        return toString()
-    }
+    override fun toString() = value.toString()
+    override fun toLaTeX() = toString()
 
     override fun equals(other: Any?): Boolean {
         return when (other) {

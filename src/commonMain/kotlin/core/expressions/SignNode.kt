@@ -11,13 +11,8 @@ class SignNode(var argument: Expression) : Expression() {
         return if (sign == Sign.UNKNOWN) this else Integer(sign.value)
     }
 
-    override fun toString(): String {
-        return "sign($argument)"
-    }
-
-    override fun toLaTeX(): String {
-        return "sign\\left(${argument.toLaTeX()}\\right)"
-    }
+    override fun toString() = "sign($argument)"
+    override fun toLaTeX() = "sign\\left(${argument.toLaTeX()}\\right)"
 
     override fun equals(other: Any?): Boolean {
         return when (other) {

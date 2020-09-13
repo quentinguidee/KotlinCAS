@@ -11,13 +11,8 @@ class Opposite(var argument: Expression) : Expression() {
         return argument.simplified().opposite()
     }
 
-    override fun toString(): String {
-        return "-$argument"
-    }
-
-    override fun toLaTeX(): String {
-        return "-${argument.toLaTeX()}"
-    }
+    override fun toString() = "-$argument"
+    override fun toLaTeX() = "-${argument.toLaTeX()}"
 
     override fun equals(other: Any?): Boolean {
         return when (other) {
@@ -26,19 +21,7 @@ class Opposite(var argument: Expression) : Expression() {
         }
     }
 
-    override fun opposite(): Expression {
-        return argument
-    }
-
-    override fun differentiated(unknown: Unknown): Expression {
-        return Opposite(argument.differentiated(unknown))
-    }
-
-    override fun integrated(unknown: Unknown): Expression {
-        return Opposite(argument.integrated(unknown))
-    }
-}
-
-interface Opposable {
-    fun opposite(): Expression
+    override fun opposite(): Expression = argument
+    override fun differentiated(unknown: Unknown): Expression = Opposite(argument.differentiated(unknown))
+    override fun integrated(unknown: Unknown): Expression = Opposite(argument.integrated(unknown))
 }
