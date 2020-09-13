@@ -1,11 +1,13 @@
 plugins {
     kotlin("multiplatform") version "1.4.0"
+    id("org.jetbrains.dokka") version "1.4.0"
 }
 group = "me.quentinguidee"
 version = "0.1.0"
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 kotlin {
     jvm {
@@ -32,7 +34,7 @@ kotlin {
         else -> throw GradleException("Host OS is not supported in Kotlin/Native.")
     }
 
-    
+
     sourceSets {
         val commonMain by getting
         val commonTest by getting {
