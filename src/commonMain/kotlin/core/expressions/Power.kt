@@ -23,8 +23,6 @@ class Power(var base: Expression, var power: Expression) : Expression() {
      * | ~                      | 0^n        | undef          | n∈ℝ0-        |
      * | ~                      | 1^n        | 1              |              |
      * | [AbsoluteValue][power] | abs(x)^p   | x^p            | p is even    |
-     *
-     * Source: https://en.wikipedia.org/wiki/Exponentiation
      */
     override fun simplified(): Expression {
         val base = this.base.simplified()
