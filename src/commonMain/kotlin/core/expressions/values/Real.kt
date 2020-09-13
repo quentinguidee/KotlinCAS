@@ -32,8 +32,4 @@ open class Real(var value: Double) : Value() {
             else -> false
         }
     }
-
-    fun isZero(): Boolean {
-        return value == 0.0
-    }
 }

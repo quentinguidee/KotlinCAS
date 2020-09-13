@@ -5,8 +5,8 @@ import core.expressions.values.Integer
 import core.expressions.values.Unknown
 
 class Root(
-        var radicand: Expression,
-        var index: Expression = Integer(2),
+    var radicand: Expression,
+    var index: Expression = Integer(2),
 ) : Expression() {
     override val sign: Sign
         get() = TODO("Not yet implemented")

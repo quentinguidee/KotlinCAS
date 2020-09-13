@@ -6,8 +6,24 @@ import core.expressions.values.Real
 import core.expressions.values.Unknown
 
 class Division(var numerator: Expression, var denominator: Expression) : Expression() {
+
+    /**
+     * | Status | Expr. | Returns |
+     * |--------|-------|---------|
+     * | Done   | 0/x   | 0       |
+     * | ~      | x/inf | true    |
+     * | Done   | +/+   | +       |
+     * | Done   | -/+   | -       |
+     * | Done   | +/-   | -       |
+     * | Done   | -/-   | +       |
+     */
     override val sign: Sign
-        get() = TODO("Not yet implemented")
+        get() {
+            if (numerator.isZero()) {
+                return Sign.SIGNLESS
+            }
+            return Sign.values().first { it.value == numerator.sign.value * denominator.sign.value }
+        }
 
     override fun simplified(): Expression {
         return this
@@ -30,11 +46,11 @@ class Division(var numerator: Expression, var denominator: Expression) : Express
 
     override fun differentiated(unknown: Unknown): Expression {
         return Division(
-                Addition(
-                        Multiplication(numerator.differentiated(unknown), denominator),
-                        Multiplication(numerator, denominator.differentiated(unknown)).opposite()
-                ),
-                Power(denominator, Integer(2))
+            Addition(
+                Multiplication(numerator.differentiated(unknown), denominator),
+                Multiplication(numerator, denominator.differentiated(unknown)).opposite()
+            ),
+            Power(denominator, Integer(2))
         )
     }
 

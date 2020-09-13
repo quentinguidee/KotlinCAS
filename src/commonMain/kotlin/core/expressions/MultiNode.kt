@@ -1,7 +1,8 @@
 package core.expressions
 
 abstract class MultiNode(val separator: String, vararg children: Expression) : Expression() {
-    protected var children: ArrayList<Expression> = ArrayList(children.asList())
+    var children: ArrayList<Expression> = ArrayList(children.asList())
+        private set
 
     fun add(child: Expression) {
         this.children.add(child)

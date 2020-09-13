@@ -27,4 +27,23 @@ abstract class Expression : Node(), AbsoluteValuable, Differentiable, Integrable
     override fun opposite(): Expression {
         return Opposite(this)
     }
+
+    /**
+     * Should not be called directly. Call [Power][simplified] instead.
+     */
+    internal open fun power(power: Expression): Expression {
+        return Power(this, power)
+    }
+
+    fun isPositive(): Boolean {
+        return sign == Sign.POSITIVE
+    }
+
+    fun isZero(): Boolean {
+        return sign == Sign.SIGNLESS
+    }
+
+    fun isNegative(): Boolean {
+        return sign == Sign.NEGATIVE
+    }
 }

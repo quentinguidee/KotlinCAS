@@ -21,6 +21,14 @@ class ExpressionsTests {
         assertEquals("1/2+1*x^2+1", Power(Unknown(), Integer(2)).integrated().toString())
         assertEquals(Power(Natural(1), Natural(2)), Power(Natural(1), Natural(2)))
         assertNotEquals(Power(Natural(2), Natural(1)), Power(Natural(1), Natural(2)))
+        assertEquals(Unknown(), Power(Unknown(), Integer(1)).simplified())
+        assertEquals(Integer(1), Power(Unknown(), Integer(0)).simplified())
+        assertEquals(
+            Power(Unknown(), Multiplication(Integer(2), Integer(3))),
+            Power(Power(Unknown(), Integer(2)), Integer(3)).simplified()
+        )
+        assertEquals(Power(Unknown(), Integer(4)), Power(AbsoluteValue(Unknown()), Integer(4)).simplified())
+        // assertEquals("x^3*x^4", Power(Unknown(), Addition(Integer(3), Integer(4))).simplified().toString())
     }
 
     @Test
