@@ -9,6 +9,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 
+@Suppress("TYPE_INFERENCE_ONLY_INPUT_TYPES_WARNING")
 class ExpressionsTests {
     @Test
     internal fun testPow() {
@@ -72,7 +73,7 @@ class ExpressionsTests {
         assertEquals("\\sin{(3)}", sin.toLaTeX())
         assertEquals("1*cos(x)", Sin(Unknown()).differentiated().toString())
         assertEquals("∫sin(x) dx", Sin(Unknown()).integrated().toString())
-        assertNotEquals<Expression>(Cos(Unknown()), Sin(Unknown()))
+        assertNotEquals(Cos(Unknown()), Sin(Unknown()))
         assertEquals(Sin(Unknown()), Sin(Unknown()))
         assertNotEquals(Sin(Unknown("y")), Sin(Unknown()))
     }
@@ -84,7 +85,7 @@ class ExpressionsTests {
         assertEquals("\\cos{(3)}", cos.toLaTeX())
         assertEquals("1*-sin(x)", Cos(Unknown()).differentiated().toString())
         assertEquals("∫cos(x) dx", Cos(Unknown()).integrated().toString())
-        assertNotEquals<Expression>(Sin(Unknown()), Cos(Unknown()))
+        assertNotEquals(Sin(Unknown()), Cos(Unknown()))
         assertEquals(Cos(Unknown()), Cos(Unknown()))
         assertNotEquals(Cos(Unknown("y")), Cos(Unknown()))
     }
@@ -96,7 +97,7 @@ class ExpressionsTests {
         assertEquals("\\tan{(3)}", tan.toLaTeX())
         assertEquals("0*cos(3)*cos(3)+-sin(3)*0*-sin(3)/cos(3)^2", tan.differentiated().toString())
         assertEquals("∫tan(3) dx", tan.integrated().toString())
-        assertNotEquals<Expression>(Sin(Unknown()), Tan(Unknown()))
+        assertNotEquals(Sin(Unknown()), Tan(Unknown()))
         assertEquals(Tan(Unknown()), Tan(Unknown()))
         assertNotEquals(Tan(Unknown("y")), Tan(Unknown()))
     }
@@ -153,5 +154,14 @@ class ExpressionsTests {
         assertEquals("∫∫x dx dx", integral.integrated().toString())
         assertNotEquals(Integral(Unknown("y"), Unknown()), integral)
         assertEquals(Integral(Unknown(), Unknown()), integral)
+    }
+
+    @Test
+    internal fun testVector() {
+        val vector = Vector(Unknown(), Integer(2))
+        assertEquals("(x,2)", vector.toString())
+        assertEquals("\\left(x,2\\right)", vector.toLaTeX())
+        assertEquals(Vector(Unknown(), Integer(2)), vector)
+        assertNotEquals(Vector(Unknown(), Integer(3)), vector)
     }
 }
