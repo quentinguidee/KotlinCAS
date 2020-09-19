@@ -182,7 +182,19 @@ class ExpressionsTests {
                 arrayOf(Integer(3), Integer(4))
             ).isSquareMatrix()
         )
-        assertEquals(Matrix.zero(3, 2).toString(), "[[0,0],[0,0],[0,0]]")
-        assertEquals(Matrix.identity(3).toString(), "[[1,0,0],[0,1,0],[0,0,1]]")
+        assertEquals("[[0,0],[0,0],[0,0]]", Matrix.zero(3, 2).toString())
+        assertEquals("[[1,0,0],[0,1,0],[0,0,1]]", Matrix.identity(3).toString())
+    }
+
+    @Test
+    internal fun testKronecherDelta() {
+        val zero = KroneckerDelta(Integer(1), Integer(2))
+        val one = KroneckerDelta(Integer(2), Integer(2))
+        assertEquals("δ_12", zero.toString())
+        assertEquals("\\delta_{12}", zero.toLaTeX())
+        assertEquals(Sign.POSITIVE, one.sign)
+        assertEquals(Sign.SIGNLESS, zero.sign)
+        assertEquals("0", zero.simplified().toString())
+        assertEquals("1", one.simplified().toString())
     }
 }

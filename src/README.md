@@ -2,4 +2,5 @@
 
 * https://en.wikipedia.org/wiki/Exponentiation
 * https://en.wikipedia.org/wiki/Set_(mathematics)
-* https://en.wikipedia.org/wiki/Matrix_(mathematics)#Size
+* https://en.wikipedia.org/wiki/Matrix_(mathematics)
+* https://en.wikipedia.org/wiki/Kronecker_delta
