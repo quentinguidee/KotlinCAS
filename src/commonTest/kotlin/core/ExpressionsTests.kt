@@ -5,9 +5,7 @@ import core.expressions.values.Integer
 import core.expressions.values.Natural
 import core.expressions.values.Real
 import core.expressions.values.Unknown
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNotEquals
+import kotlin.test.*
 
 @Suppress("TYPE_INFERENCE_ONLY_INPUT_TYPES_WARNING")
 class ExpressionsTests {
@@ -167,11 +165,24 @@ class ExpressionsTests {
 
     @Test
     internal fun testMatrix() {
-        assertEquals(
-            "[[1,2],[3,4]]", Matrix(
+        val matrix = Matrix(
+            arrayOf(Integer(1), Integer(2), Integer(3)),
+            arrayOf(Integer(3), Integer(4), Integer(5))
+        )
+        assertEquals("[[1,2,3],[3,4,5]]", matrix.toString())
+        assertEquals(Dimension(2, 3), matrix.dimension)
+        assertFalse(matrix.isRowVector())
+        assertFalse(matrix.isColumnVector())
+        assertFalse(matrix.isSquareMatrix())
+        assertTrue(Matrix(arrayOf(Integer(1)), arrayOf(Integer(2))).isColumnVector())
+        assertTrue(Matrix(arrayOf(Integer(1), Integer(2))).isRowVector())
+        assertTrue(
+            Matrix(
                 arrayOf(Integer(1), Integer(2)),
                 arrayOf(Integer(3), Integer(4))
-            ).toString()
+            ).isSquareMatrix()
         )
+        assertEquals(Matrix.zero(3, 2).toString(), "[[0,0],[0,0],[0,0]]")
+        assertEquals(Matrix.identity(3).toString(), "[[1,0,0],[0,1,0],[0,0,1]]")
     }
 }
