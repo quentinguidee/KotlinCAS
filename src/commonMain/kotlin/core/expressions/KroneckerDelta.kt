@@ -3,7 +3,7 @@ package core.expressions
 import core.Sign
 import core.expressions.values.Integer
 
-class KroneckerDelta(val i: Integer, val j: Integer) : Expression() {
+class KroneckerDelta(val i: Integer, val j: Integer = Integer(0)) : Expression() {
     override val sign: Sign
         get() = Sign.values().first { it == simplified().sign }
 
