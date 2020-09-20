@@ -57,11 +57,7 @@ class Matrix(vararg lines: Array<Expression>) : Expression() {
     }
 
     override fun toLaTeX(): String {
-        return "[${
-            lines.joinToString(separator = ",") { line ->
-                "[${line.joinToString(separator = ",") { element -> element.toString() }}]"
-            }
-        }]"
+        TODO("Not yet implemented")
     }
 }
 
