@@ -27,7 +27,7 @@ abstract class Expression : Node() {
     /** Should not be called directly. Call [Power][simplified] instead. */
     internal open fun power(power: Expression): Expression = Power(this, power)
 
-    fun isPositive(): Boolean = sign == Sign.POSITIVE
-    fun isZero(): Boolean = sign == Sign.SIGNLESS
-    fun isNegative(): Boolean = sign == Sign.NEGATIVE
+    fun isPositive() = sign == Sign.POSITIVE
+    fun isZero() = sign == Sign.SIGNLESS
+    fun isNegative() = sign == Sign.NEGATIVE
 }
